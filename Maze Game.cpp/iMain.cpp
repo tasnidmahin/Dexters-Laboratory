@@ -1,8 +1,6 @@
 /*
-    Original Author: S. M. Shahriar Nirjon
-    Last Modified by: Mohammad Saifur Rahman
-    last modified: October 13, 2015
-    Version: 2.0
+    Author: Tasnid Mahin
+    Version: 1.0
 */
 
 
@@ -18,6 +16,7 @@ using namespace std;
 #define barWidth 4
 #define xSpeed 10
 #define ySpeed 10
+int gamestate=1,disCnt=0;
 int sh=screenHeight,bh=barWidth;
 int barx[]={72,314,0,148,556,72,462,556,0,999,1200,1200,724,999,999,1076,76,148,420,894,1300,1230,550,72,386,242,658,923,1338,1124,1465,999,1359,72,321,1235,1086,790,890,1010,470};
 int barDx[]={170,170,314,238,290,590,120,140,400,320,280,280,400,360,288,180,165,224,200,120,250,225,220,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh};
@@ -74,12 +73,55 @@ void drawbars()
 	iFilledRectangle(1010,screenHeight-612,barWidth,105);
 	iFilledRectangle(470,screenHeight-652,barWidth,105);//18
 }
+struct KEYS
+{
+	int kx,ky,state;
+}key1[5];
+void keyposSet()
+{
+	for(int i=0;i<5;i++)
+	{
+		key1[i].kx=rand()%1519;
+		key1[i].ky=rand()%757;
+		key1[i].state=1;
+	}
+}
+void keyShow()
+{
+	for(int i=0;i<5;i++)
+	{
+		if(key1[i].kx+32<=dextersWidth && key1[i].kx>=0 && key1[i].ky>=screenHeight-dextersHeigth-4 && key1[i].ky+32<=screenHeight)
+		{
+			key1[i].kx=rand()%1519;
+			key1[i].ky=rand()%757;
+		}
+		if(key1[i].kx+32<=screenWidth && key1[i].kx>=1486 && key1[i].ky>=0 && key1[i].ky+32<=screenHeight-724)
+		{
+			key1[i].kx=rand()%1519;
+			key1[i].ky=rand()%757;
+		}
+		for(int j=0;j<41;j++)
+		{
+			if(x+dextersWidth>barx[j] && x<barx[j]+barDx[j] && y+dextersHeigth>bary[j] && y<bary[j]+barDy[j])
+			{
+				key1[i].kx=rand()%1519;
+				key1[i].ky=rand()%757;
+				j=-1;
+			}
+		}
+		if(key1[i].state)
+		{
+			iShowBMP2(key1[i].kx,key1[i].ky,"key.bmp",0);
+		}
+	}
+}
 void iDraw()
 {
 	//place your drawing codes here
 	iClear();
 	iShowBMPAlternative (1486,0, "destination.bmp");
 	iShowBMP2(x,y,"dex1.bmp",0);
+	keyShow();
 	drawbars();
 }
 
@@ -144,6 +186,15 @@ void iKeyboard(unsigned char key)
 					break;
 				}
 			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					key1[i].state=0;
+					disCnt++;
+					break;
+				}
+			}
 		}
 	}
 	else if(key == 'a')
@@ -160,6 +211,15 @@ void iKeyboard(unsigned char key)
 				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 				{
 					x+=xSpeed;
+					break;
+				}
+			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					key1[i].state=0;
+					disCnt++;
 					break;
 				}
 			}
@@ -182,6 +242,15 @@ void iKeyboard(unsigned char key)
 					break;
 				}
 			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					key1[i].state=0;
+					disCnt++;
+					break;
+				}
+			}
 		}
 	}
 	else if(key == 's')
@@ -198,6 +267,15 @@ void iKeyboard(unsigned char key)
 				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 				{
 					y+=ySpeed;
+					break;
+				}
+			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					key1[i].state=0;
+					disCnt++;
 					break;
 				}
 			}
@@ -228,6 +306,7 @@ void iSpecialKeyboard(unsigned char key)
 int main()
 {
 	//place your own initialization codes here.
+	keyposSet();
 	iInitialize(screenWidth, screenHeight, "Dexters' Laboratory");
 	return 0;
 }
