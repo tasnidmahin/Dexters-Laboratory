@@ -102,7 +102,7 @@ void keyShow()
 		}
 		for(int j=0;j<41;j++)
 		{
-			if(x+dextersWidth>barx[j] && x<barx[j]+barDx[j] && y+dextersHeigth>bary[j] && y<bary[j]+barDy[j])
+			if(key1[i].kx+32>barx[j] && key1[i].kx<barx[j]+barDx[j] && key1[i].ky+32>bary[j] && key1[i].ky<bary[j]+barDy[j])
 			{
 				key1[i].kx=rand()%1519;
 				key1[i].ky=rand()%757;
@@ -115,6 +115,48 @@ void keyShow()
 		}
 	}
 }
+struct ENEMYES
+{
+	int ex,ey,state;
+}enemy[3];
+void enemyposSet()
+{
+	for(int i=0;i<3;i++)
+	{
+		enemy[i].ex=rand()%1487;
+		enemy[i].ey=rand()%724;
+		enemy[i].state=1;
+	}
+}
+void enemyShow()
+{
+	for(int i=0;i<3;i++)
+	{
+		if(enemy[i].ex+64<=dextersWidth && enemy[i].ex>=0 && enemy[i].ey>=screenHeight-dextersHeigth-4 && enemy[i].ey+64<=screenHeight)
+		{
+			enemy[i].ex=rand()%1487;
+			enemy[i].ey=rand()%724;
+		}
+		if(enemy[i].ex+64<=screenWidth && enemy[i].ex>=1486 && enemy[i].ey>=0 && enemy[i].ey+64<=screenHeight-724)
+		{
+			enemy[i].ex=rand()%1487;
+			enemy[i].ey=rand()%724;
+		}
+		for(int j=0;j<41;j++)
+		{
+			if(enemy[i].ex+64>barx[j] && enemy[i].ex<barx[j]+barDx[j] && enemy[i].ey+64>bary[j] && enemy[i].ey<bary[j]+barDy[j])
+			{
+				enemy[i].ex=rand()%1487;
+				enemy[i].ey=rand()%724;
+				j=-1;
+			}
+		}
+		if(enemy[i].state)
+		{
+			iShowBMP2(enemy[i].ex,enemy[i].ey,"enemy.bmp",0);
+		}
+	}
+}
 void iDraw()
 {
 	//place your drawing codes here
@@ -122,6 +164,7 @@ void iDraw()
 	iShowBMPAlternative (1486,0, "destination.bmp");
 	iShowBMP2(x,y,"dex1.bmp",0);
 	keyShow();
+	enemyShow();
 	drawbars();
 }
 
@@ -307,6 +350,7 @@ int main()
 {
 	//place your own initialization codes here.
 	keyposSet();
+	enemyposSet();
 	iInitialize(screenWidth, screenHeight, "Dexters' Laboratory");
 	return 0;
 }
