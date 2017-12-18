@@ -315,15 +315,16 @@ void iDraw()
 {
 	//place your drawing codes here
 	iClear();
+	drawbars();
 	iShowBMPAlternative (1486,0, "destination.bmp");
 	iShowBMP2(x,y,"dex1.bmp",0);
 	keyShow();
 	enemyShow();
 	if(gamestate==2)
 	{
-		iShowBMP(0,0,"Lost1");
+		iClear();
+		iShowBMPAlternative(0,0,"Lost 1.bmp");
 	}
-	drawbars();
 }
 
 /*
@@ -396,6 +397,7 @@ void iKeyboard(unsigned char key)
 					break;
 				}
 			}
+			//if(x+64>screenWidth-64 && x<=screenWidth && y>=0 && y<=
 		}
 	}
 	else if(key == 'a')
