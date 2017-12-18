@@ -19,10 +19,10 @@ using namespace std;
 #define xSpeed 10
 #define ySpeed 10
 int sh=screenHeight,bh=barWidth;
-int barx[]={72,314,0,148};
-int barDx[]={170,170,314,238};
-int bary[]={sh-72,sh-72,sh-386,sh-304};
-int barDy[]={bh,bh,bh,bh};
+int barx[]={72,314,0,148,556,72,462,556,0,999,1200,1200,724,999,999,1076,76,148,420,894,1300,1230,550,72,386,242,658,923,1338,1124,1465,999,1359,72,321,1235,1086,790,890,1010,470};
+int barDx[]={170,170,314,238,290,590,120,140,400,320,280,280,400,360,288,180,165,224,200,120,250,225,220,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh};
+int bary[]={sh-72,sh-72,sh-386,sh-304,sh-72,sh-464,sh-304,sh-148,sh-536,sh-72,sh-722,sh-648,sh-722,sh-386,sh-216,sh-298,sh-722,sh-648,sh-722,sh-612,sh-570,sh-480,sh-642,sh-304,sh-386,sh-228,sh-384,sh-295,sh-718,sh-722,sh-400,sh-384,sh-386,0,0,sh-212,sh-212,sh-525,sh-718,sh-612,sh-652};
+int barDy[]={bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,160,232,160,240,295,72,255,400,170,225,170,65,50,50,380,205,105,105};
 int mposx,  mposy,x=0,y=screenHeight-dextersHeigth-4;
 /*
 	function iDraw() is called again and again by the system.
@@ -34,10 +34,10 @@ void drawbars()
 	iFilledRectangle(314,screenHeight-72,170,barWidth);
 	iFilledRectangle(0,screenHeight-386,314,barWidth);
 	iFilledRectangle(148,screenHeight-304,238,barWidth);
-	iFilledRectangle(556,screenHeight-72,295,barWidth);
+	iFilledRectangle(556,screenHeight-72,290,barWidth);
 	iFilledRectangle(72,screenHeight-464,590,barWidth);
 	iFilledRectangle(462,screenHeight-304,120,barWidth);
-	iFilledRectangle(556,screenHeight-144,140,barWidth);
+	iFilledRectangle(556,screenHeight-148,140,barWidth);
 	iFilledRectangle(0,screenHeight-536,400,barWidth);
 	iFilledRectangle(999,screenHeight-72,320,barWidth);
 	iFilledRectangle(1200,screenHeight-722,280,barWidth);
@@ -78,8 +78,8 @@ void iDraw()
 {
 	//place your drawing codes here
 	iClear();
-	iShowBMP2(x,y,"dex1.bmp",0);
 	iShowBMPAlternative (1486,0, "destination.bmp");
+	iShowBMP2(x,y,"dex1.bmp",0);
 	drawbars();
 }
 
@@ -136,7 +136,7 @@ void iKeyboard(unsigned char key)
 		}
 		else
 		{
-			for(int i=0;i<4;i++)
+			for(int i=0;i<41;i++)
 			{
 				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 				{
@@ -155,7 +155,7 @@ void iKeyboard(unsigned char key)
 		}
 		else
 		{
-			for(int i=0;i<4;i++)
+			for(int i=0;i<41;i++)
 			{
 				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 				{
@@ -174,7 +174,7 @@ void iKeyboard(unsigned char key)
 		}
 		else
 		{
-			for(int i=0;i<4;i++)
+			for(int i=0;i<41;i++)
 			{
 				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 				{
@@ -193,7 +193,7 @@ void iKeyboard(unsigned char key)
 		}
 		else
 		{
-			for(int i=0;i<4;i++)
+			for(int i=0;i<41;i++)
 			{
 				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 				{
