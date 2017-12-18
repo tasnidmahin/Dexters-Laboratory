@@ -5,7 +5,9 @@
 
 
 
-# include <iostream>;
+# include <iostream>
+#include <stdlib.h>
+#include<time.h>
 using namespace std;
 # include "iGraphics.h"
 # include "bitmap_viewer.h"
@@ -79,6 +81,7 @@ struct KEYS
 }key1[5];
 void keyposSet()
 {
+	srand(time(0));
 	for(int i=0;i<5;i++)
 	{
 		key1[i].kx=rand()%1519;
@@ -100,6 +103,14 @@ void keyShow()
 			key1[i].kx=rand()%1519;
 			key1[i].ky=rand()%757;
 		}
+		if(key1[i].kx+64>screenWidth)
+		{
+			key1[i].kx=screenWidth-64;
+		}
+		if(key1[i].ky+64>screenHeight)
+		{
+			key1[i].kx=screenHeight-64;
+		}
 		for(int j=0;j<41;j++)
 		{
 			if(key1[i].kx+32>barx[j] && key1[i].kx<barx[j]+barDx[j] && key1[i].ky+32>bary[j] && key1[i].ky<bary[j]+barDy[j])
@@ -117,7 +128,7 @@ void keyShow()
 }
 struct ENEMYES
 {
-	int ex,ey,state;
+	int ex,ey,state,dir;
 }enemy[3];
 void enemyposSet()
 {
@@ -126,6 +137,7 @@ void enemyposSet()
 		enemy[i].ex=rand()%1487;
 		enemy[i].ey=rand()%724;
 		enemy[i].state=1;
+		enemy[i].dir=rand()%4;
 	}
 }
 void enemyShow()
@@ -142,7 +154,27 @@ void enemyShow()
 			enemy[i].ex=rand()%1487;
 			enemy[i].ey=rand()%724;
 		}
-		for(int j=0;j<41;j++)
+		if(enemy[i].ex+64>screenWidth)
+		{
+			enemy[i].ex=screenWidth-64;
+			enemy[i].dir=rand()%4;
+		}
+		if(enemy[i].ey+64>screenHeight)
+		{
+			enemy[i].ey=screenHeight-64;
+			enemy[i].dir=rand()%4;
+		}
+		if(enemy[i].ex<0)
+		{
+			enemy[i].ex=0;
+			enemy[i].dir=rand()%4;
+		}
+		if(enemy[i].ey<0)
+		{
+			enemy[i].ey=0;
+			enemy[i].dir=rand()%4;
+		}
+		/*for(int j=0;j<41;j++)
 		{
 			if(enemy[i].ex+64>barx[j] && enemy[i].ex<barx[j]+barDx[j] && enemy[i].ey+64>bary[j] && enemy[i].ey<bary[j]+barDy[j])
 			{
@@ -150,10 +182,128 @@ void enemyShow()
 				enemy[i].ey=rand()%724;
 				j=-1;
 			}
-		}
+		}*/
 		if(enemy[i].state)
 		{
 			iShowBMP2(enemy[i].ex,enemy[i].ey,"enemy.bmp",0);
+		}
+	}
+}
+void movingEnemy()
+{
+	for(int i=0;i<3;i++)
+	{
+		if(enemy[i].dir==0)
+		{
+			enemy[i].ex+=xSpeed;
+		}
+		else if(enemy[i].dir==1)
+		{
+			enemy[i].ex-=xSpeed;
+		}
+		else if(enemy[i].dir==2)
+		{
+			enemy[i].ey+=ySpeed;
+		}
+		else
+		{
+			enemy[i].ey-=ySpeed;
+		}
+		/*if(enemy[i].ex+64<=screenWidth && enemy[i].ex>=1486 && enemy[i].ey>=0 && enemy[i].ey+64<=screenHeight-724)
+		{
+			enemy[i].ex;
+			enemy[i].ey;
+		}*/
+		for(int j=0;j<41;j++)
+		{
+			if(enemy[i].ex+64>barx[j] && enemy[i].ex<barx[j]+barDx[j] && enemy[i].ey+64>bary[j] && enemy[i].ey<bary[j]+barDy[j])
+			{
+				if(enemy[i].dir==0)
+				{
+					enemy[i].ex-=xSpeed;
+					enemy[i].dir=rand()%4;
+					if(enemy[i].dir==0)
+					{
+						enemy[i].dir=rand()%4;
+					}
+					else if(enemy[i].dir==1)
+					{
+						enemy[i].ex-=xSpeed;
+					}
+					else if(enemy[i].dir==2)
+					{
+						enemy[i].ey+=ySpeed;
+					}
+					else
+					{
+						enemy[i].ey-=ySpeed;
+					}
+				}
+				else if(enemy[i].dir==1)
+				{
+					enemy[i].ex+=xSpeed;
+					enemy[i].dir=rand()%4;
+					if(enemy[i].dir==0)
+					{
+						enemy[i].ex+=xSpeed;
+					}
+					else if(enemy[i].dir==1)
+					{
+						enemy[i].dir=rand()%4;
+					}
+					else if(enemy[i].dir==2)
+					{
+						enemy[i].ey+=ySpeed;
+					}
+					else
+					{
+						enemy[i].ey-=ySpeed;
+					}
+				}
+				else if(enemy[i].dir==2)
+				{
+					enemy[i].ey-=xSpeed;
+					enemy[i].dir=rand()%4;
+					if(enemy[i].dir==0)
+					{
+						enemy[i].ex+=xSpeed;
+					}
+					else if(enemy[i].dir==1)
+					{
+						enemy[i].ex-=xSpeed;
+					}
+					else if(enemy[i].dir==2)
+					{
+						enemy[i].dir=rand()%4;
+					}
+					else
+					{
+						enemy[i].ey-=ySpeed;
+					}
+				}
+				else
+				{
+					enemy[i].ey+=xSpeed;
+					enemy[i].dir=rand()%4;
+					if(enemy[i].dir==0)
+					{
+						enemy[i].ex+=xSpeed;
+					}
+					else if(enemy[i].dir==1)
+					{
+						enemy[i].ex-=xSpeed;
+					}
+					else if(enemy[i].dir==2)
+					{
+						enemy[i].ey+=ySpeed;
+					}
+					else
+					{
+						enemy[i].dir=rand()%4;
+					}
+				}
+				j=-1;
+			}
 		}
 	}
 }
@@ -351,6 +501,10 @@ int main()
 	//place your own initialization codes here.
 	keyposSet();
 	enemyposSet();
+	if(gamestate==1)
+	{
+		iSetTimer(150,movingEnemy);
+	}
 	iInitialize(screenWidth, screenHeight, "Dexters' Laboratory");
 	return 0;
 }
