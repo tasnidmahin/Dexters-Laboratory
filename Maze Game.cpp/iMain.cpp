@@ -164,6 +164,10 @@ void enemyShow()
 			enemy[i].ey=screenHeight-64;
 			enemy[i].dir=rand()%4;
 		}
+		if(enemy[i].ex+64>=x && enemy[i].ex<=x+64 && enemy[i].ey+64>=y && enemy[i].ey<=y+64)
+		{
+			gamestate=2;
+		}
 		if(enemy[i].ex<0)
 		{
 			enemy[i].ex=0;
@@ -315,6 +319,10 @@ void iDraw()
 	iShowBMP2(x,y,"dex1.bmp",0);
 	keyShow();
 	enemyShow();
+	if(gamestate==2)
+	{
+		iShowBMP(0,0,"Lost1");
+	}
 	drawbars();
 }
 
