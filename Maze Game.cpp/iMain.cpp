@@ -525,6 +525,134 @@ void iSpecialKeyboard(unsigned char key)
 	{
 		exit(0);
 	}
+	if(key == GLUT_KEY_RIGHT)
+	{
+		x+=xSpeed;
+		if(x>=screenWidth-dextersWidth)
+		{
+			x=screenWidth-dextersWidth;
+		}
+		else
+		{
+			for(int i=0;i<41;i++)
+			{
+				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				{
+					x-=xSpeed;
+					break;
+				}
+			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
+				}
+			}
+			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+			{
+				gamestate=3;
+			}
+		}
+	}
+	else if(key == GLUT_KEY_LEFT)
+	{
+		x-=xSpeed;
+		if(x<=0)
+		{
+			x=0;
+		}
+		else
+		{
+			for(int i=0;i<41;i++)
+			{
+				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				{
+					x+=xSpeed;
+					break;
+				}
+			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
+				}
+			}
+		}
+	}
+	else if(key ==  GLUT_KEY_UP)
+	{
+		y+=ySpeed ;
+		if(y>=screenHeight-dextersHeigth)
+		{
+			y=screenHeight-dextersHeigth;
+		}
+		else
+		{
+			for(int i=0;i<41;i++)
+			{
+				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				{
+					y-=ySpeed;
+					break;
+				}
+			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
+				}
+			}
+		}
+	}
+	else if(key == GLUT_KEY_DOWN)
+	{
+		y-=ySpeed ;
+		if(y<=0)
+		{
+			y=0;
+		}
+		else
+		{
+			for(int i=0;i<41;i++)
+			{
+				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				{
+					y+=ySpeed;
+					break;
+				}
+			}
+			for(int i=0;i<5;i++)
+			{
+				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				{
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
+				}
+			}
+			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+			{
+				gamestate=3;
+			}
+		}
+	}
 	//place your codes for other keys here
 }
 //
