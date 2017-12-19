@@ -323,7 +323,14 @@ void iDraw()
 	if(gamestate==2)
 	{
 		iClear();
-		iShowBMPAlternative(0,0,"Lost 1.bmp");
+		iShowBMPAlternative(263,138,"Lost 1.bmp");
+	}
+	if(gamestate==3)
+	{
+		iClear();
+		iSetColor(255,255,255);
+		iFilledRectangle(0,0,1550,788);
+		iShowBMPAlternative(263,138,"Win 2.bmp");
 	}
 }
 
@@ -392,12 +399,17 @@ void iKeyboard(unsigned char key)
 			{
 				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
 				{
-					key1[i].state=0;
-					disCnt++;
-					break;
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
 				}
 			}
-			//if(x+64>screenWidth-64 && x<=screenWidth && y>=0 && y<=
+			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+			{
+				gamestate=3;
+			}
 		}
 	}
 	else if(key == 'a')
@@ -421,9 +433,11 @@ void iKeyboard(unsigned char key)
 			{
 				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
 				{
-					key1[i].state=0;
-					disCnt++;
-					break;
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
 				}
 			}
 		}
@@ -449,9 +463,11 @@ void iKeyboard(unsigned char key)
 			{
 				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
 				{
-					key1[i].state=0;
-					disCnt++;
-					break;
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
 				}
 			}
 		}
@@ -477,10 +493,16 @@ void iKeyboard(unsigned char key)
 			{
 				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
 				{
-					key1[i].state=0;
-					disCnt++;
-					break;
+					if(key1[i].state==1)
+					{
+						key1[i].state=0;
+						disCnt++;
+					}
 				}
+			}
+			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+			{
+				gamestate=3;
 			}
 		}
 	}
