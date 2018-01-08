@@ -202,6 +202,7 @@ void enemyShow()
 }
 void movingEnemy()
 {
+	//printf("ENEMY");
 	for(int i=0;i<3;i++)
 	{
 		if(enemy[i].dir==0)
@@ -347,6 +348,7 @@ void iDraw()
 		drawbars();
 		iShowBMPAlternative (1486,0, "destination.bmp");
 		iShowBMP2(x,y,"dex1.bmp",0);
+		iSetTimer(850,movingEnemy);
 		keyShow();
 		enemyShow();
 	}
@@ -721,9 +723,11 @@ int main()
 	//place your own initialization codes here.
 	keyposSet();
 	enemyposSet();
+	//printf("%d\n",gamestate);
 	if(gamestate==level1)
 	{
-		iSetTimer(150,movingEnemy);
+		//printf("MHN\n");
+		//iSetTimer(150,movingEnemy);
 	}
 	iInitialize(screenWidth, screenHeight, "Dexters' Laboratory");
 	return 0;
