@@ -18,7 +18,14 @@ using namespace std;
 #define barWidth 4
 #define xSpeed 10
 #define ySpeed 10
-int gamestate=1,disCnt=0;
+#define menu 1
+#define hall_of_fame 2
+#define instruction 3
+#define about 4
+#define level1 10
+#define level2 101
+#define lost 20
+int gamestate=menu,disCnt=0;
 int sh=screenHeight,bh=barWidth;
 int barx[]={72,314,0,148,556,72,462,556,0,999,1200,1200,724,999,999,1076,76,148,420,894,1300,1230,550,72,386,242,658,923,1338,1124,1465,999,1359,72,321,1235,1086,790,890,1010,470};
 int barDx[]={170,170,314,238,290,590,120,140,400,320,280,280,400,360,288,180,165,224,200,120,250,225,220,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh};
@@ -166,7 +173,7 @@ void enemyShow()
 		}
 		if(enemy[i].ex+64>=x && enemy[i].ex<=x+64 && enemy[i].ey+64>=y && enemy[i].ey<=y+64)
 		{
-			gamestate=2;
+			gamestate=lost;
 		}
 		if(enemy[i].ex<0)
 		{
@@ -314,18 +321,41 @@ void movingEnemy()
 void iDraw()
 {
 	//place your drawing codes here
-	iClear();
-	drawbars();
-	iShowBMPAlternative (1486,0, "destination.bmp");
-	iShowBMP2(x,y,"dex1.bmp",0);
-	keyShow();
-	enemyShow();
-	if(gamestate==2)
+	if(gamestate == menu)
+	{
+		iClear();
+		iShowBMPAlternative(0,0,"MenuDemo - Copy.bmp");
+	}
+	if(gamestate == hall_of_fame)
+	{
+		iClear();
+		iShowBMPAlternative(263,138,"hall of fame - Copy.bmp");
+	}
+	if(gamestate == instruction)
+	{
+		iClear();
+		iShowBMPAlternative(263,138,"Instruction - Copy.bmp");
+	}
+	if(gamestate == about)
+	{
+		iClear();
+		iShowBMPAlternative(263,138,"about - Copy.bmp");
+	}
+	if(gamestate == level1)
+	{
+		iClear();
+		drawbars();
+		iShowBMPAlternative (1486,0, "destination.bmp");
+		iShowBMP2(x,y,"dex1.bmp",0);
+		keyShow();
+		enemyShow();
+	}
+	if(gamestate==lost)
 	{
 		iClear();
 		iShowBMPAlternative(263,138,"Lost 1.bmp");
 	}
-	if(gamestate==3)
+	if(gamestate==level2)
 	{
 		iClear();
 		iSetColor(255,255,255);
@@ -351,6 +381,29 @@ void iMouse(int button, int state, int mx, int my)
 {
 	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
+		if(gamestate == menu)
+		{
+			if(mx>=61 && mx<=182 && my>=383 && my<=423)
+			{
+				gamestate=level1;
+			}
+			if(mx>=61 && mx<=292 && my>=313 && my<=351)
+			{
+				gamestate=hall_of_fame;
+			}
+			if(mx>=61 && mx<=292 && my>=236 && my<=275)
+			{
+				gamestate=instruction;
+			}
+			if(mx>=61 && mx<=235 && my>=159 && my<=199)
+			{
+				gamestate=about;
+			}
+			if(mx>=61 && mx<=174 && my>=80 && my<=121)
+			{
+				exit(0);
+			}
+		}
 		//place your codes here
 	}
 	if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
@@ -378,6 +431,13 @@ void iPassiveMouseMove(int mx,int my)
 */
 void iKeyboard(unsigned char key)
 {
+	if(gamestate == hall_of_fame || gamestate == instruction || gamestate == about)
+	{
+		if(key == '\b')
+		{
+			gamestate = menu;
+		}
+	}
 	if(key == 'd')
 	{
 		x+=xSpeed;
@@ -408,7 +468,7 @@ void iKeyboard(unsigned char key)
 			}
 			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
 			{
-				gamestate=3;
+				gamestate=level2;
 			}
 		}
 	}
@@ -502,7 +562,7 @@ void iKeyboard(unsigned char key)
 			}
 			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
 			{
-				gamestate=3;
+				gamestate=level2;
 			}
 		}
 	}
@@ -521,10 +581,10 @@ void iKeyboard(unsigned char key)
 void iSpecialKeyboard(unsigned char key)
 {
 
-	if(key == GLUT_KEY_END)
+	/*if(key == GLUT_KEY_END)
 	{
 		exit(0);
-	}
+	}*/
 	if(key == GLUT_KEY_RIGHT)
 	{
 		x+=xSpeed;
@@ -555,7 +615,7 @@ void iSpecialKeyboard(unsigned char key)
 			}
 			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
 			{
-				gamestate=3;
+				gamestate=level2;
 			}
 		}
 	}
@@ -649,7 +709,7 @@ void iSpecialKeyboard(unsigned char key)
 			}
 			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
 			{
-				gamestate=3;
+				gamestate=level2;
 			}
 		}
 	}
@@ -661,7 +721,7 @@ int main()
 	//place your own initialization codes here.
 	keyposSet();
 	enemyposSet();
-	if(gamestate==1)
+	if(gamestate==level1)
 	{
 		iSetTimer(150,movingEnemy);
 	}
