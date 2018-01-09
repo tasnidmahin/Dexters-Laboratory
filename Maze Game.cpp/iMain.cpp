@@ -348,7 +348,7 @@ void iDraw()
 		drawbars();
 		iShowBMPAlternative (1486,0, "destination.bmp");
 		iShowBMP2(x,y,"dex1.bmp",0);
-		iSetTimer(850,movingEnemy);
+		iSetTimer(350,movingEnemy);
 		keyShow();
 		enemyShow();
 	}
@@ -440,131 +440,134 @@ void iKeyboard(unsigned char key)
 			gamestate = menu;
 		}
 	}
-	if(key == 'd')
+	if(gamestate==level1)
 	{
-		x+=xSpeed;
-		if(x>=screenWidth-dextersWidth)
+		if(key == 'd')
 		{
-			x=screenWidth-dextersWidth;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
+			x+=xSpeed;
+			if(x>=screenWidth-dextersWidth)
 			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					x-=xSpeed;
-					break;
-				}
+				x=screenWidth-dextersWidth;
 			}
-			for(int i=0;i<5;i++)
+			else
 			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				for(int i=0;i<41;i++)
 				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 					{
-						key1[i].state=0;
-						disCnt++;
+						x-=xSpeed;
+						break;
 					}
 				}
-			}
-			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
-			{
-				gamestate=level2;
-			}
-		}
-	}
-	else if(key == 'a')
-	{
-		x-=xSpeed;
-		if(x<=0)
-		{
-			x=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				for(int i=0;i<5;i++)
 				{
-					x+=xSpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
 					{
-						key1[i].state=0;
-						disCnt++;
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
 					}
 				}
-			}
-		}
-	}
-	else if(key == 'w')
-	{
-		y+=ySpeed ;
-		if(y>=screenHeight-dextersHeigth)
-		{
-			y=screenHeight-dextersHeigth;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
 				{
-					y-=ySpeed;
-					break;
+					gamestate=level2;
 				}
 			}
-			for(int i=0;i<5;i++)
+		}
+		else if(key == 'a')
+		{
+			x-=xSpeed;
+			if(x<=0)
 			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				x=0;
+			}
+			else
+			{
+				for(int i=0;i<41;i++)
 				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 					{
-						key1[i].state=0;
-						disCnt++;
+						x+=xSpeed;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+					{
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
 					}
 				}
 			}
 		}
-	}
-	else if(key == 's')
-	{
-		y-=ySpeed ;
-		if(y<=0)
+		else if(key == 'w')
 		{
-			y=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
+			y+=ySpeed ;
+			if(y>=screenHeight-dextersHeigth)
 			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					y+=ySpeed;
-					break;
-				}
+				y=screenHeight-dextersHeigth;
 			}
-			for(int i=0;i<5;i++)
+			else
 			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				for(int i=0;i<41;i++)
 				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 					{
-						key1[i].state=0;
-						disCnt++;
+						y-=ySpeed;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+					{
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
 					}
 				}
 			}
-			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+		}
+		else if(key == 's')
+		{
+			y-=ySpeed ;
+			if(y<=0)
 			{
-				gamestate=level2;
+				y=0;
+			}
+			else
+			{
+				for(int i=0;i<41;i++)
+				{
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+					{
+						y+=ySpeed;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+					{
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
+					}
+				}
+				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+				{
+					gamestate=level2;
+				}
 			}
 		}
 	}
@@ -587,131 +590,134 @@ void iSpecialKeyboard(unsigned char key)
 	{
 		exit(0);
 	}*/
-	if(key == GLUT_KEY_RIGHT)
+	if(gamestate==level1)
 	{
-		x+=xSpeed;
-		if(x>=screenWidth-dextersWidth)
+		if(key == GLUT_KEY_RIGHT)
 		{
-			x=screenWidth-dextersWidth;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
+			x+=xSpeed;
+			if(x>=screenWidth-dextersWidth)
 			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					x-=xSpeed;
-					break;
-				}
+				x=screenWidth-dextersWidth;
 			}
-			for(int i=0;i<5;i++)
+			else
 			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				for(int i=0;i<41;i++)
 				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 					{
-						key1[i].state=0;
-						disCnt++;
+						x-=xSpeed;
+						break;
 					}
 				}
-			}
-			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
-			{
-				gamestate=level2;
-			}
-		}
-	}
-	else if(key == GLUT_KEY_LEFT)
-	{
-		x-=xSpeed;
-		if(x<=0)
-		{
-			x=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				for(int i=0;i<5;i++)
 				{
-					x+=xSpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
 					{
-						key1[i].state=0;
-						disCnt++;
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
 					}
 				}
-			}
-		}
-	}
-	else if(key ==  GLUT_KEY_UP)
-	{
-		y+=ySpeed ;
-		if(y>=screenHeight-dextersHeigth)
-		{
-			y=screenHeight-dextersHeigth;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
 				{
-					y-=ySpeed;
-					break;
+					gamestate=level2;
 				}
 			}
-			for(int i=0;i<5;i++)
+		}
+		else if(key == GLUT_KEY_LEFT)
+		{
+			x-=xSpeed;
+			if(x<=0)
 			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				x=0;
+			}
+			else
+			{
+				for(int i=0;i<41;i++)
 				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 					{
-						key1[i].state=0;
-						disCnt++;
+						x+=xSpeed;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+					{
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
 					}
 				}
 			}
 		}
-	}
-	else if(key == GLUT_KEY_DOWN)
-	{
-		y-=ySpeed ;
-		if(y<=0)
+		else if(key ==  GLUT_KEY_UP)
 		{
-			y=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
+			y+=ySpeed ;
+			if(y>=screenHeight-dextersHeigth)
 			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					y+=ySpeed;
-					break;
-				}
+				y=screenHeight-dextersHeigth;
 			}
-			for(int i=0;i<5;i++)
+			else
 			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+				for(int i=0;i<41;i++)
 				{
-					if(key1[i].state==1)
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
 					{
-						key1[i].state=0;
-						disCnt++;
+						y-=ySpeed;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+					{
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
 					}
 				}
 			}
-			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+		}
+		else if(key == GLUT_KEY_DOWN)
+		{
+			y-=ySpeed ;
+			if(y<=0)
 			{
-				gamestate=level2;
+				y=0;
+			}
+			else
+			{
+				for(int i=0;i<41;i++)
+				{
+					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
+					{
+						y+=ySpeed;
+						break;
+					}
+				}
+				for(int i=0;i<5;i++)
+				{
+					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
+					{
+						if(key1[i].state==1)
+						{
+							key1[i].state=0;
+							disCnt++;
+						}
+					}
+				}
+				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
+				{
+					gamestate=level2;
+				}
 			}
 		}
 	}
