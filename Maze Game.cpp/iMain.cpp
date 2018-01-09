@@ -18,6 +18,8 @@ using namespace std;
 #define barWidth 4
 #define xSpeed 10
 #define ySpeed 10
+#define enxSpeed 3
+#define enySpeed 3
 #define menu 1
 #define hall_of_fame 2
 #define instruction 3
@@ -207,19 +209,19 @@ void movingEnemy()
 	{
 		if(enemy[i].dir==0)
 		{
-			enemy[i].ex+=xSpeed;
+			enemy[i].ex+=enxSpeed;
 		}
 		else if(enemy[i].dir==1)
 		{
-			enemy[i].ex-=xSpeed;
+			enemy[i].ex-=enxSpeed;
 		}
 		else if(enemy[i].dir==2)
 		{
-			enemy[i].ey+=ySpeed;
+			enemy[i].ey+=enySpeed;
 		}
 		else
 		{
-			enemy[i].ey-=ySpeed;
+			enemy[i].ey-=enySpeed;
 		}
 		/*if(enemy[i].ex+64<=screenWidth && enemy[i].ex>=1486 && enemy[i].ey>=0 && enemy[i].ey+64<=screenHeight-724)
 		{
@@ -232,7 +234,7 @@ void movingEnemy()
 			{
 				if(enemy[i].dir==0)
 				{
-					enemy[i].ex-=xSpeed;
+					enemy[i].ex-=enxSpeed;
 					enemy[i].dir=rand()%4;
 					if(enemy[i].dir==0)
 					{
@@ -240,24 +242,24 @@ void movingEnemy()
 					}
 					else if(enemy[i].dir==1)
 					{
-						enemy[i].ex-=xSpeed;
+						enemy[i].ex-=enxSpeed;
 					}
 					else if(enemy[i].dir==2)
 					{
-						enemy[i].ey+=ySpeed;
+						enemy[i].ey+=enySpeed;
 					}
 					else
 					{
-						enemy[i].ey-=ySpeed;
+						enemy[i].ey-=enySpeed;
 					}
 				}
 				else if(enemy[i].dir==1)
 				{
-					enemy[i].ex+=xSpeed;
+					enemy[i].ex+=enxSpeed;
 					enemy[i].dir=rand()%4;
 					if(enemy[i].dir==0)
 					{
-						enemy[i].ex+=xSpeed;
+						enemy[i].ex+=enxSpeed;
 					}
 					else if(enemy[i].dir==1)
 					{
@@ -265,24 +267,24 @@ void movingEnemy()
 					}
 					else if(enemy[i].dir==2)
 					{
-						enemy[i].ey+=ySpeed;
+						enemy[i].ey+=enySpeed;
 					}
 					else
 					{
-						enemy[i].ey-=ySpeed;
+						enemy[i].ey-=enySpeed;
 					}
 				}
 				else if(enemy[i].dir==2)
 				{
-					enemy[i].ey-=xSpeed;
+					enemy[i].ey-=enxSpeed;
 					enemy[i].dir=rand()%4;
 					if(enemy[i].dir==0)
 					{
-						enemy[i].ex+=xSpeed;
+						enemy[i].ex+=enxSpeed;
 					}
 					else if(enemy[i].dir==1)
 					{
-						enemy[i].ex-=xSpeed;
+						enemy[i].ex-=enxSpeed;
 					}
 					else if(enemy[i].dir==2)
 					{
@@ -290,24 +292,24 @@ void movingEnemy()
 					}
 					else
 					{
-						enemy[i].ey-=ySpeed;
+						enemy[i].ey-=enySpeed;
 					}
 				}
 				else
 				{
-					enemy[i].ey+=xSpeed;
+					enemy[i].ey+=enxSpeed;
 					enemy[i].dir=rand()%4;
 					if(enemy[i].dir==0)
 					{
-						enemy[i].ex+=xSpeed;
+						enemy[i].ex+=enxSpeed;
 					}
 					else if(enemy[i].dir==1)
 					{
-						enemy[i].ex-=xSpeed;
+						enemy[i].ex-=enxSpeed;
 					}
 					else if(enemy[i].dir==2)
 					{
-						enemy[i].ey+=ySpeed;
+						enemy[i].ey+=enySpeed;
 					}
 					else
 					{
