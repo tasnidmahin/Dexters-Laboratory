@@ -1,4 +1,4 @@
-﻿Build started 1/9/2018 10:05:01 PM.
+﻿Build started 1/14/2018 9:15:48 PM.
      1>Project "E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Maze Game.cpp\Maze Game.cpp.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Maze Game.cpp.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -21,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.10
+Time Elapsed 00:00:00.97
