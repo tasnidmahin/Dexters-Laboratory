@@ -8,46 +8,50 @@
 # include <iostream>
 #include <stdlib.h>
 #include<time.h>
-
+#include<string>
 # include "iGraphics.h"
 # include "bitmap_viewer.h"
 # include "level1.h"
 # include "level2.h"
 # include "level3.h"
 # include "menu.h"
+using namespace std;
 void iDraw()
 {
 	//place your drawing codes here
-	/*if(gamestate == menu)
-	{
-		iClear();
-		iShowBMPAlternative(0,0,"MenuDemo - Copy.bmp");
-	}
-	if(gamestate == hall_of_fame)
-	{
-		iClear();
-		iShowBMPAlternative(263,138,"hall of fame - Copy.bmp");
-	}
-	if(gamestate == instruction)
-	{
-		iClear();
-		iShowBMPAlternative(263,138,"Instruction - Copy.bmp");
-	}
-	if(gamestate == about)
-	{
-		iClear();
-		iShowBMPAlternative(263,138,"about - Copy.bmp");
-	}*/
 	menushow();
 	if(gamestate == level1)
 	{
 		iClear();
 		drawbars();
 		iShowBMPAlternative (1486,0, "destination.bmp");
-		iShowBMP2(x,y,"dex1.bmp",0);
 		iSetTimer(150,movingEnemy);
 		keyShow();
 		enemyShow();
+		if(!charstand)
+		{
+			if(chforward ==true)
+			{
+				iShowBMP2(x,y,forkwardRun[index],0);
+			}
+			else if(backward == true)
+			{
+				iShowBMP2(x,y,backwardRun[index],0);
+			}
+			standcounter++;
+			if(standcounter>30)
+			{
+				charstand = true;
+				chforward =true;
+				backward =true;
+			}
+		}
+		else
+		{
+			iShowBMP2(x,y,"dex1.bmp",0);
+		}
+		//string s=to_string(timeremaining);
+		//iText(600,screenHeight+5,s,GLUT_BITMAP_HELVETICA_18);
 	}
 	if(gamestate==lost)
 	{
@@ -309,6 +313,15 @@ void iSpecialKeyboard(unsigned char key)
 	if(key == GLUT_KEY_RIGHT)
 	{
 		x+=xSpeed;
+		standcounter=0;
+		index++;
+		chforward =true;
+		charstand=false;
+		backward =false;
+		if(index>3)
+		{
+			index=0;
+		}
 		if(x>=screenWidth-dextersWidth)
 		{
 			x=screenWidth-dextersWidth;
@@ -343,6 +356,15 @@ void iSpecialKeyboard(unsigned char key)
 	else if(key == GLUT_KEY_LEFT)
 	{
 		x-=xSpeed;
+		index++;
+		standcounter=0;
+		chforward = false;
+		charstand=false;
+		backward =true;
+		if(index>5)
+		{
+			index=0;
+		}
 		if(x<=0)
 		{
 			x=0;
@@ -373,6 +395,9 @@ void iSpecialKeyboard(unsigned char key)
 	else if(key ==  GLUT_KEY_UP)
 	{
 		y+=ySpeed ;
+		charstand =true;
+		chforward =false;
+		backward =false;
 		if(y>=screenHeight-dextersHeigth)
 		{
 			y=screenHeight-dextersHeigth;
@@ -403,6 +428,9 @@ void iSpecialKeyboard(unsigned char key)
 	else if(key == GLUT_KEY_DOWN)
 	{
 		y-=ySpeed ;
+		charstand =true;
+		chforward =false;
+		backward =false;
 		if(y<=0)
 		{
 			y=0;
@@ -449,6 +477,6 @@ int main()
 		//printf("MHN\n");
 		//iSetTimer(150,movingEnemy);
 	}
-	iInitialize(screenWidth, screenHeight, "Dexters' Laboratory");
+	iInitialize(screenWidth, screenHeight+48, "Dexters' Laboratory");
 	return 0;
 }

@@ -24,6 +24,12 @@ int barDx[]={170,170,314,238,290,590,120,140,400,320,280,280,400,360,288,180,165
 int bary[]={sh-72,sh-72,sh-386,sh-304,sh-72,sh-464,sh-304,sh-148,sh-536,sh-72,sh-722,sh-648,sh-722,sh-386,sh-216,sh-298,sh-722,sh-648,sh-722,sh-612,sh-570,sh-480,sh-642,sh-304,sh-386,sh-228,sh-384,sh-295,sh-718,sh-722,sh-400,sh-384,sh-386,0,0,sh-212,sh-212,sh-525,sh-718,sh-612,sh-652};//for looping y axis for bars of level1
 int barDy[]={bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,160,232,160,240,295,72,255,400,170,225,170,65,50,50,380,205,105,105};//for looping y axis length for bars of level1
 int mposx,  mposy,x=0,y=screenHeight-dextersHeigth-4;
+
+char backwardRun[7][20]={"RunB6.bmp","RunB5.bmp","RunB4.bmp","RunB3.bmp","RunB2.bmp","RunB1.bmp"};
+char forkwardRun[5][20]={"RunF1.bmp","RunF2.bmp","RunF3.bmp","RunF4.bmp"};
+bool charstand = true,chforward=false,backward=false;
+int standcounter = 0;
+int index = 0,timecounter=0,timeremaining=60;
 /*
 	function iDraw() is called again and again by the system.
 */
@@ -74,6 +80,8 @@ void drawbars()
 	iFilledRectangle(890,screenHeight-718,barWidth,205);
 	iFilledRectangle(1010,screenHeight-612,barWidth,105);
 	iFilledRectangle(470,screenHeight-652,barWidth,105);//18 horizontal bars
+
+	iFilledRectangle(0,screenHeight,screenWidth,1);//for time
 }
 //keys for level1
 struct KEYS
