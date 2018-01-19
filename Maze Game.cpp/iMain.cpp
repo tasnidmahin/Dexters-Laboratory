@@ -57,6 +57,10 @@ void iDraw()
 		//iShowBMP2(x,y,"dex1.bmp",0);
 		iSetTimer(150,movingEnemy);
 		iSetTimer(1000,time);
+		if(timeremaining<=0)
+		{
+			gamestate=lost;
+		}
 		keyShow();
 		enemyShow();
 		if(!charstand)
@@ -84,6 +88,7 @@ void iDraw()
 		s=to_string(timeremaining);
 		//string s = lexical_cast<string>(timeremaining);		
 		//iText2(600,screenHeight+5,s,GLUT_BITMAP_HELVETICA_18);
+		iText(600,screenHeight+5,(char*)s.c_str(),GLUT_BITMAP_HELVETICA_18);
 	}
 	if(gamestate==lost)
 	{

@@ -34,7 +34,7 @@ char forkwardRun[5][20]={"RunF1.bmp","RunF2.bmp","RunF3.bmp","RunF4.bmp"};
 bool charstand = true,chforward=false,backward=false;
 int standcounter = 0;
 int index = 0,timecounter=0;
-long long timeremaining=60;
+long long timeremaining=60,timeflag=0;
 
 //for drawing the bars of level1
 
@@ -329,5 +329,10 @@ void movingEnemy()//for enemy moving
 }
 void time()
 {
+	timeflag++;
+	if(timeflag%5==0)
+	{
+		timeflag=0;
 		timeremaining--;
+	}
 }
