@@ -1,4 +1,4 @@
-
+//#include"levelone.h"
 int back_image;
 
 //x=screenWidth * (5.0/820.0);
@@ -6,6 +6,14 @@ int back_image;
 //int  xSpeed = 10;
 //int ySpeed = 10;
 
+int screen_width=screenWidth;
+int screen_height=screenHeight;
+double dex_x=screen_width * (5.0/820.0);
+double dex_y=screen_height * (260.0/510.0);
+double dx = 10;
+double dy = 10;
+int dexterwidth=64;
+int dexterheight=64;
 
 struct rectangel{
 	double rectpos_x;
@@ -41,9 +49,6 @@ struct rectangel{
 	}
 
 }bar[100] ;
-
-
-
 
 
 void puzzle()
@@ -172,3 +177,98 @@ void puzzle()
 
    
 }
+
+void SpectialKeyBordControl_Level2(unsigned char key)
+{
+	if(gamestate == 101)
+	{
+	
+		if (key == GLUT_KEY_RIGHT)
+	{			
+			dex_x+=dx;
+
+			if(dex_x>=screen_width-dexterwidth)
+		{
+			dex_x=screen_width-dexterwidth;
+		}
+			else{
+				for(int i=0;i<38;i++)
+			{
+				if(dex_x+dexterwidth>bar[i].rectpos_x && dex_x<bar[i].rectpos_x+bar[i].rectwidth && dex_y+dexterheight>bar[i].rectpos_y && dex_y<bar[i].rectpos_y+bar[i].rectheight)
+				{
+					dex_x-=dx;
+					break;
+				}
+			}
+		}
+	
+	}
+	 else if(key == GLUT_KEY_LEFT)
+	{
+			dex_x-=dx;
+			if(dex_x<=0)
+			{
+				dex_x=0;
+			}
+			else
+			{
+				for(int i=0;i<38;i++)
+				{
+					if(dex_x+dexterwidth>bar[i].rectpos_x && dex_x<bar[i].rectpos_x+bar[i].rectwidth && dex_y+dexterheight>bar[i].rectpos_y && dex_y<bar[i].rectpos_y+bar[i].rectheight)
+					{
+						dex_x+=dx;
+						break;
+					}
+				}
+			}
+	}
+	else if(key ==  GLUT_KEY_UP)
+	{
+		dex_y+=dy ;
+		if(dex_y>=screen_height-dexterheight)
+		{
+			dex_y=screen_height-dexterheight;
+		}
+		else
+		{
+			for(int i=0;i<38;i++)
+			{
+				if(dex_x+dexterwidth>bar[i].rectpos_x && dex_x<bar[i].rectpos_x+bar[i].rectwidth && dex_y+dexterheight>bar[i].rectpos_y && dex_y<bar[i].rectpos_y+bar[i].rectheight)
+				{
+					dex_y-=dy;
+					break;
+				}
+			}
+			
+		}
+ }
+
+ else if(key == GLUT_KEY_DOWN)
+	{
+		dex_y-=dy;
+		if(dex_y<=0)
+		{
+			dex_y=0;
+		}
+		else
+		{
+			for(int i=0;i<38;i++)
+			{
+				if(dex_x+dexterwidth>bar[i].rectpos_x && dex_x<bar[i].rectpos_x+bar[i].rectwidth && dex_y+dexterheight>bar[i].rectpos_y && dex_y<bar[i].rectpos_y+bar[i].rectheight)
+				{
+					dex_y+=dy;
+					break;
+				}
+			}
+			
+		}
+	}
+
+  }
+
+
+
+}
+
+
+

@@ -1,265 +1,359 @@
 
-//int back_image;
-
-//x=screenWidth * (5.0/820.0);
-//y=screenHeight * (260.0/510.0);
-//int  xSpeed = 10;
-//int ySpeed = 10;
-
-
-struct rectangel3{
-	double rectpos_x;
-	double rectpos_y;
-    double rectwidth;
-	double rectheight;
-
+int bar3x[]={0,0,0,94,378,76,198,198,283,284,283,463,387,0,198,92,85,0,189,600,600,600,694,978,676,798,798,883,884,883,1063,987,600,798,692,685,600,789,495,495,495,260,300,300,300,376,498,498,583,570,880,880,880,956,1078,1078,1163,880,977,777,978,1070,1192,1192,1277,890,890,1200,1200,1200,1276,1398,1398,1000,1290,1290,1390,1522,1042,142,3,192,1155,1065,1165,1265,1365,1420,1310,1340};
+int bar3Dx[]={170,bh,104,293,bh,123,bh,85,bh,bh,180,bh,104,104,94,104,bh,94,bh,170,bh,104,293,bh,123,bh,85,bh,bh,180,bh,104,104,94,104,bh,94,bh,170,bh,104,150,170,bh,104,123,bh,85,bh,bh,170,bh,104,123,bh,85,bh,bh,bh,bh,170,123,bh,85,bh,bh,85,104,bh,104,123,bh,45,294,bh,104,130,bh,480,234,50,170,272,bh,bh,bh,bh,bh,30,bh};
+int bar3y[]={sh-788,sh-788,sh-603,sh-695,sh-694,sh-494,sh-610,sh-610,sh-610,sh-430,sh-317,sh-394,sh-479,sh-409,sh-409,sh-332,sh-332,sh-170,sh-332,sh-638,sh-638,sh-453,sh-545,sh-544,sh-344,sh-460,sh-460,sh-460,sh-280,sh-167,sh-244,sh-329,sh-259,sh-259,sh-182,sh-182,sh-20,sh-182,sh-730,sh-730,sh-565,sh-788,sh-228,sh-228,sh-125,sh-20,sh-137,sh-137,sh-137,sh-380,sh-788,sh-788,sh-685,sh-545,sh-697,sh-697,sh-697,sh-685,sh-685,sh-788,sh-428,sh-220,sh-337,sh-337,sh-337,sh-80,sh-80,sh-588,sh-588,sh-515,sh-420,sh-537,sh-537,sh-788,sh-788,sh-705,sh-625,sh-688,sh-8,sh-20,sh-80,sh-170,sh-130,sh-58,sh-130,sh-48,sh-130,sh-330,sh-218,sh-240};
+int bar3Dy[]={bh,185,bh,bh,286,bh,124,bh,85,114,bh,85,bh,bh,bh,bh,162,bh,85,bh,185,bh,bh,286,bh,124,bh,85,114,bh,85,bh,bh,bh,bh,162,bh,85,bh,165,bh,bh,bh,105,bh,bh,124,bh,35,45,bh,105,bh,bh,160,bh,35,50,50,60,bh,bh,124,bh,35,80,bh,bh,75,bh,bh,124,bh,bh,85,bh,bh,788,bh,bh,bh,60,bh,50,40,40,40,200,bh,30};
+int bar3Width=7;
+void draw3bars(){
+	iSetColor(0,250,0);
+	iFilledRectangle(0,screenHeight-788,170,bar3Width); 
+	iFilledRectangle(0,screenHeight-788,bar3Width,185); 
+	iFilledRectangle(0,screenHeight-603,104,bar3Width); 
+	iFilledRectangle(94,screenHeight-695,293,bar3Width); 
+	iFilledRectangle(378,screenHeight-694,bar3Width,286); 
+	iFilledRectangle(76,screenHeight-494,123,bar3Width); 
+	iFilledRectangle(198,screenHeight-610,bar3Width,124); 
+	iFilledRectangle(198,screenHeight-610,85,bar3Width); 
+	iFilledRectangle(283,screenHeight-610,bar3Width,85); 
+	iFilledRectangle(284,screenHeight-430,bar3Width,114); 
+	iFilledRectangle(283,screenHeight-317,180,bar3Width); 
+	iFilledRectangle(463,screenHeight-394,bar3Width,85); 
+	iFilledRectangle(387,screenHeight-479,104,bar3Width); 
+	iFilledRectangle(0,screenHeight-409,104,bar3Width); 
+	iFilledRectangle(198,screenHeight-409,94,bar3Width); 
+	iFilledRectangle(92,screenHeight-332,104,bar3Width); 
+	iFilledRectangle(85,screenHeight-332,bar3Width,162); 
+	iFilledRectangle(0,screenHeight-170,94,bar3Width); 
+	iFilledRectangle(189,screenHeight-332,bar3Width,85); 
 	
 
-	rectangel3(){
-		
-		;
-	}
-	rectangel3(double x,double y,double w,double h){
-		
-		rectpos_x=x;
-		rectpos_y=y;
-		rectwidth=w;
-		rectheight=h;
-		
+	iFilledRectangle(600,screenHeight-638,170,bar3Width); 
+	iFilledRectangle(600,screenHeight-638,bar3Width,185); 
+	iFilledRectangle(600,screenHeight-453,104,bar3Width); 
+	iFilledRectangle(694,screenHeight-545,293,bar3Width); 
+	iFilledRectangle(978,screenHeight-544,bar3Width,286); 
+	iFilledRectangle(676,screenHeight-344,123,bar3Width); 
+	iFilledRectangle(798,screenHeight-460,bar3Width,124); 
+	iFilledRectangle(798,screenHeight-460,85,bar3Width); 
+	iFilledRectangle(883,screenHeight-460,bar3Width,85); 
+	iFilledRectangle(884,screenHeight-280,bar3Width,114); 
+	iFilledRectangle(883,screenHeight-167,180,bar3Width); 
+	iFilledRectangle(1063,screenHeight-244,bar3Width,85); 
+	iFilledRectangle(987,screenHeight-329,104,bar3Width); 
+	iFilledRectangle(600,screenHeight-259,104,bar3Width); 
+	iFilledRectangle(798,screenHeight-259,94,bar3Width); 
+	iFilledRectangle(692,screenHeight-182,104,bar3Width); 
+	iFilledRectangle(685,screenHeight-182,bar3Width,162); 
+	iFilledRectangle(600,screenHeight-20,94,bar3Width); 
+	iFilledRectangle(789,screenHeight-182,bar3Width,85); 
 
-	}
-	void valuerect3(double x,double y,double w,double h){
-		rectpos_x=x;
-		rectpos_y=y;
-		rectwidth=w;
-		rectheight=h;
+	iFilledRectangle(495,screenHeight-730,170,bar3Width); 
+	iFilledRectangle(495,screenHeight-730,bar3Width,165); 
+	iFilledRectangle(495,screenHeight-565,104,bar3Width); 
 
-	}
-	void drawrect3(){
-		iSetColor(99,172,180);
-		iFilledRectangle(rectpos_x,rectpos_y,rectwidth,rectheight);
-	}
+	iFilledRectangle(260,screenHeight-788,150,bar3Width);
 
-}bar3[100] ;
+	iFilledRectangle(300,screenHeight-228,170,bar3Width); 
+	iFilledRectangle(300,screenHeight-228,bar3Width,105); 
+	iFilledRectangle(300,screenHeight-125,104,bar3Width); 
+	iFilledRectangle(376,screenHeight-20,123,bar3Width); 
+	iFilledRectangle(498,screenHeight-137,bar3Width,124); 
+	iFilledRectangle(498,screenHeight-137,85,bar3Width); 
+	iFilledRectangle(583,screenHeight-137,bar3Width,35); 
+
+	iFilledRectangle(570,screenHeight-380,bar3Width,45); 
+
+	iFilledRectangle(880,screenHeight-788,170,bar3Width); 
+	iFilledRectangle(880,screenHeight-788,bar3Width,105); 
+	iFilledRectangle(880,screenHeight-685,104,bar3Width); 
+
+	iFilledRectangle(956,screenHeight-545,123,bar3Width); 
+	iFilledRectangle(1078,screenHeight-697,bar3Width,160); 
+	iFilledRectangle(1078,screenHeight-697,85,bar3Width); 
+	iFilledRectangle(1163,screenHeight-697,bar3Width,35); 
+	iFilledRectangle(880,screenHeight-685,bar3Width,50); 
+	iFilledRectangle(977,screenHeight-685,bar3Width,50); 
+	iFilledRectangle(777,screenHeight-788,bar3Width,60); 
+
+	iFilledRectangle(978,screenHeight-428,170,bar3Width); 
+
+	iFilledRectangle(1070,screenHeight-220,123,bar3Width); 
+	iFilledRectangle(1192,screenHeight-337,bar3Width,124); 
+	iFilledRectangle(1192,screenHeight-337,85,bar3Width); 
+	iFilledRectangle(1277,screenHeight-337,bar3Width,35);
+
+	iFilledRectangle(890,screenHeight-80,bar3Width,80); 
+	iFilledRectangle(890,screenHeight-80,85,bar3Width); 
+
+	iFilledRectangle(1200,screenHeight-588,104,bar3Width); //issue
+	iFilledRectangle(1200,screenHeight-588,bar3Width,75); 
+	iFilledRectangle(1200,screenHeight-515,104,bar3Width); 
+	iFilledRectangle(1276,screenHeight-420,123,bar3Width); 
+	iFilledRectangle(1398,screenHeight-537,bar3Width,124); 
+	iFilledRectangle(1398,screenHeight-537,45,bar3Width); 
 
 
+	iFilledRectangle(1000,screenHeight-788,294,bar3Width); 
+	iFilledRectangle(1290,screenHeight-788,bar3Width,85); 
+	iFilledRectangle(1290,screenHeight-705,104,bar3Width); 
+	iFilledRectangle(1390,screenHeight-625,130,bar3Width); 
 
+	iFilledRectangle(1522,screenHeight-688,bar3Width,788); 
+	iFilledRectangle(1042,screenHeight-8,480,bar3Width); 
+	iFilledRectangle(142,screenHeight-20,234,bar3Width);
+	iFilledRectangle(3,screenHeight-80,50,bar3Width); 
+	iFilledRectangle(192,screenHeight-170,bar3Width, 60); 
 
+	iFilledRectangle(1155,screenHeight-130,272,bar3Width);
+	iFilledRectangle(1065,screenHeight-58,bar3Width,50);
+	iFilledRectangle(1165,screenHeight-130,bar3Width,40);
+	iFilledRectangle(1265,screenHeight-48,bar3Width,40);
+	iFilledRectangle(1365,screenHeight-130,bar3Width,40); 
+	iFilledRectangle(1420,screenHeight-330,bar3Width, 200); 
 
-void puzzle3()
+	iFilledRectangle(1310,screenHeight-218,30, bar3Width);
+	iFilledRectangle(1340,screenHeight-240,bar3Width,30); 
+	
+}
+
+struct GEM
 {
-  
-	
-	bar3[0] = rectangel3(screenWidth * (2.0/820.0),screenHeight * (2.0/510.0),screenWidth * (90.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[0].drawrect3();
-	bar3[1] = rectangel3(screenWidth * (2.0/820.0),screenHeight * (2.0/510.0),screenWidth * (5.0/820.0),screenHeight * (120.0/510.0)); 
-	bar3[1].drawrect3();
-	bar3[2] = rectangel3(screenWidth * (2.0/820.0),screenHeight * (120.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[2].drawrect3();
-	bar3[3] = rectangel3(screenWidth * (50.0/820.0),screenHeight * (60.0/510.0),screenWidth * (155.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[3].drawrect3();
-	bar3[4] = rectangel3(screenWidth * (200.0/820.0),screenHeight * (60.0/510.0),screenWidth * (5.0/820.0),screenHeight * (185.0/510.0)); 
-	bar3[4].drawrect3();
-	bar3[5] = rectangel3(screenWidth * (40.0/820.0),screenHeight * (190.0/510.0),screenWidth * (65.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[5].drawrect3();
-	bar3[6] = rectangel3(screenWidth * (105.0/820.0),screenHeight * (115.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[6].drawrect3();
-	bar3[7] = rectangel3(screenWidth * (105.0/820.0),screenHeight * (115.0/510.0),screenWidth * (45.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[7].drawrect3();
-	bar3[8] = rectangel3(screenWidth * (150.0/820.0),screenHeight * (115.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[8].drawrect3();
-	bar3[9] = rectangel3(screenWidth * (150.0/820.0),screenHeight * (225.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[9].drawrect3();
-	bar3[10] = rectangel3(screenWidth * (150.0/820.0),screenHeight * (305.0/510.0),screenWidth * (95.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[10].drawrect3();
-	bar3[11] = rectangel3(screenWidth * (245.0/820.0),screenHeight * (255.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[11].drawrect3();
-	bar3[12] = rectangel3(screenWidth * (205.0/820.0),screenHeight * (200.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[12].drawrect3();
-	bar3[13] = rectangel3(screenWidth * (0.0/820.0),screenHeight * (245.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[13].drawrect3();
-	bar3[14] = rectangel3(screenWidth * (105.0/820.0),screenHeight * (245.0/510.0),screenWidth * (50.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[14].drawrect3();
-	bar3[15] = rectangel3(screenWidth * (50.0/820.0),screenHeight * (295.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[15].drawrect3();
-	bar3[16] = rectangel3(screenWidth * (45.0/820.0),screenHeight * (295.0/510.0),screenWidth * (5.0/820.0),screenHeight * (105.0/510.0)); 
-	bar3[16].drawrect3();
-	bar3[17] = rectangel3(screenWidth * (0.0/820.0),screenHeight * (400.0/510.0),screenWidth * (50.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[17].drawrect3();
-	bar3[18] = rectangel3(screenWidth * (100.0/820.0),screenHeight * (295.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[18].drawrect3();
+	int gx,gy, estate;
+}gem3[7];
+//for setting the gem positions of level3
+void keypos3Set()
+{
+	srand(time(0));
+	for(int i=0;i<7;i++)
+	{
+		gem3[i].gx=rand()%1519;//random x-axis position of keys
+		gem3[i].gy=rand()%757;//random y-axis position of keys
+		gem3[i].estate=1;//state 1 means key is visible
+	}
+}
+//for showing gems
 
+void gem3Show()
+{
+	for(int i=0;i<7;i++)// 7 for 7 gems
+	{
+		if(gem3[i].gx+32<=dextersWidth && gem3[i].gx>=0 && gem3[i].gy>=screenHeight-dextersHeigth-4 && gem3[i].gy+32<=screenHeight)//check if gem position in dexters initial position
+		{
+			gem3[i].gx=rand()%1519;//change the position
+			gem3[i].gy=rand()%757;
+		}
+		if(gem3[i].gx+32<=screenWidth && gem3[i].gx>=1486 && gem3[i].gy>=0 && gem3[i].gy+32<=screenHeight-724)//check if gem position in destination's initial position
+		{
+			gem3[i].gx=rand()%1519;//change the position
+			gem3[i].gy=rand()%757;
+		}
+		if(gem3[i].gx+64>screenWidth)//check that if it is in the screen
+		{
+			gem3[i].gx=screenWidth-64;
+		}
+		if(gem3[i].gy+64>screenHeight)//check that if it is in the screen
+		{
+			gem3[i].gx=screenHeight-64;
+		}
+		for(int j=0;j<90;j++)//by loop check that the keys position overlap the bars position
+		{
+			if(gem3[i].gx+32>bar3x[j] && gem3[i].gx<bar3x[j]+bar3Dx[j] && gem3[i].gy+32>bar3y[j] && gem3[i].gy<bar3y[j]+bar3Dy[j])
+			{
+				gem3[i].gx=rand()%1519;
+				gem3[i].gy=rand()%757;
+				j=-1;
+			}
+		}
+		if(gem3[i].estate)//if gem's state true show the image
+		{
+			iShowBMP2(gem3[i].gx,gem3[i].gy,"key.bmp",0);
+		}
+	}
+}
 
-
-	bar3[19] = rectangel3(screenWidth * (400.0/820.0),screenHeight * (100.0/510.0),screenWidth * (90.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[19].drawrect3();
-	bar3[20] = rectangel3(screenWidth * (400.0/820.0),screenHeight * (100.0/510.0),screenWidth * (5.0/820.0),screenHeight * (120.0/510.0)); 
-	bar3[20].drawrect3();
-	bar3[21] = rectangel3(screenWidth * (400.0/820.0),screenHeight * (220.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[21].drawrect3();
-	bar3[22] = rectangel3(screenWidth * (450.0/820.0),screenHeight * (160.0/510.0),screenWidth * (155.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[22].drawrect3();
-	bar3[23] = rectangel3(screenWidth * (600.0/820.0),screenHeight * (160.0/510.0),screenWidth * (5.0/820.0),screenHeight * (185.0/510.0)); 
-	bar3[23].drawrect3();
-	bar3[24] = rectangel3(screenWidth * (440.0/820.0),screenHeight * (290.0/510.0),screenWidth * (65.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[24].drawrect3();
-	bar3[25] = rectangel3(screenWidth * (505.0/820.0),screenHeight * (215.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[25].drawrect3();
-	bar3[26] = rectangel3(screenWidth * (505.0/820.0),screenHeight * (215.0/510.0),screenWidth * (45.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[26].drawrect3();
-	bar3[27] = rectangel3(screenWidth * (550.0/820.0),screenHeight * (215.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[27].drawrect3();
-	bar3[28] = rectangel3(screenWidth * (550.0/820.0),screenHeight * (325.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[28].drawrect3();
-	bar3[29] = rectangel3(screenWidth * (550.0/820.0),screenHeight * (405.0/510.0),screenWidth * (95.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[29].drawrect3();
-	bar3[30] = rectangel3(screenWidth * (645.0/820.0),screenHeight * (355.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[30].drawrect3();
-	bar3[31] = rectangel3(screenWidth * (605.0/820.0),screenHeight * (300.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[31].drawrect3();
-	bar3[32] = rectangel3(screenWidth * (400.0/820.0),screenHeight * (345.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[32].drawrect3();
-	bar3[33] = rectangel3(screenWidth * (405.0/820.0),screenHeight * (345.0/510.0),screenWidth * (50.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[33].drawrect3();
-	bar3[34] = rectangel3(screenWidth * (450.0/820.0),screenHeight * (395.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[34].drawrect3();
-	bar3[35] = rectangel3(screenWidth * (445.0/820.0),screenHeight * (395.0/510.0),screenWidth * (5.0/820.0),screenHeight * (105.0/510.0)); 
-	bar3[35].drawrect3();
-	bar3[36] = rectangel3(screenWidth * (400.0/820.0),screenHeight * (500.0/510.0),screenWidth * (50.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[36].drawrect3();
-	bar3[37] = rectangel3(screenWidth * (500.0/820.0),screenHeight * (395.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[37].drawrect3();
-	
-
-	bar3[38] = rectangel3(screenWidth * (150.0/820.0),screenHeight * (355.0/510.0),screenWidth * (90.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[38].drawrect3();
-	bar3[39] = rectangel3(screenWidth * (150.0/820.0),screenHeight * (355.0/510.0),screenWidth * (5.0/820.0),screenHeight * (120.0/510.0)); 
-	bar3[39].drawrect3();
-	bar3[40] = rectangel3(screenWidth * (150.0/820.0),screenHeight * (475.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[40].drawrect3();
-	bar3[41] = rectangel3(screenWidth * (200.0/820.0),screenHeight * (415.0/510.0),screenWidth * (155.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[42].drawrect3();
-	bar3[43] = rectangel3(screenWidth * (350.0/820.0),screenHeight * (415.0/510.0),screenWidth * (5.0/820.0),screenHeight * (185.0/510.0)); 
-	bar3[43].drawrect3();
-	bar3[44] = rectangel3(screenWidth * (190.0/820.0),screenHeight * (545.0/510.0),screenWidth * (65.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[44].drawrect3();
-	bar3[45] = rectangel3(screenWidth * (255.0/820.0),screenHeight * (470.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[45].drawrect3();
-	bar3[46] = rectangel3(screenWidth * (255.0/820.0),screenHeight * (470.0/510.0),screenWidth * (45.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[46].drawrect3();
-	bar3[47] = rectangel3(screenWidth * (300.0/820.0),screenHeight * (470.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[47].drawrect3();
-	bar3[48] = rectangel3(screenWidth * (300.0/820.0),screenHeight * (580.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[48].drawrect3();
-	bar3[49] = rectangel3(screenWidth * (300.0/820.0),screenHeight * (660.0/510.0),screenWidth * (95.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[49].drawrect3();
-	bar3[50] = rectangel3(screenWidth * (395.0/820.0),screenHeight * (610.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[50].drawrect3();
-
-
-
-
-	bar3[51] = rectangel3(screenWidth * (645.0/820.0),screenHeight * (2.0/510.0),screenWidth * (90.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[51].drawrect3();
-	bar3[52] = rectangel3(screenWidth * (645.0/820.0),screenHeight * (2.0/510.0),screenWidth * (5.0/820.0),screenHeight * (120.0/510.0)); 
-	bar3[52].drawrect3();
-	bar3[53] = rectangel3(screenWidth * (645.0/820.0),screenHeight * (120.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[53].drawrect3();
-	bar3[54] = rectangel3(screenWidth * (695.0/820.0),screenHeight * (60.0/510.0),screenWidth * (155.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[54].drawrect3();
-	bar3[55] = rectangel3(screenWidth * (845.0/820.0),screenHeight * (60.0/510.0),screenWidth * (5.0/820.0),screenHeight * (185.0/510.0)); 
-	bar3[55].drawrect3();
-	bar3[56] = rectangel3(screenWidth * (695.0/820.0),screenHeight * (190.0/510.0),screenWidth * (65.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[56].drawrect3();
-	bar3[57] = rectangel3(screenWidth * (750.0/820.0),screenHeight * (115.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[57].drawrect3();
-	bar3[58] = rectangel3(screenWidth * (750.0/820.0),screenHeight * (115.0/510.0),screenWidth * (45.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[58].drawrect3();
-	bar3[59] = rectangel3(screenWidth * (795.0/820.0),screenHeight * (115.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[59].drawrect3();
-	bar3[60] = rectangel3(screenWidth * (795.0/820.0),screenHeight * (225.0/510.0),screenWidth * (5.0/820.0),screenHeight * (80.0/510.0)); 
-	bar3[60].drawrect3();
-	bar3[61] = rectangel3(screenWidth * (795.0/820.0),screenHeight * (305.0/510.0),screenWidth * (95.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[61].drawrect3();
-	bar3[62] = rectangel3(screenWidth * (890.0/820.0),screenHeight * (255.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[62].drawrect3();
-	bar3[63] = rectangel3(screenWidth * (850.0/820.0),screenHeight * (200.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[63].drawrect3();
-	
-
-
-	bar3[64] = rectangel3(screenWidth * (245.0/820.0),screenHeight * (0.0/510.0),screenWidth * (420.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[64].drawrect3();
-	bar3[65] = rectangel3(screenWidth * (255.0/820.0),screenHeight * (0.0/510.0),screenWidth * (5.0/820.0),screenHeight * (145.0/510.0)); 
-	bar3[65].drawrect3();
-	bar3[66] = rectangel3(screenWidth * (300.0/820.0),screenHeight * (55.0/510.0),screenWidth * (90.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[66].drawrect3();
-	bar3[67] = rectangel3(screenWidth * (300.0/820.0),screenHeight * (55.0/510.0),screenWidth * (5.0/820.0),screenHeight * (120.0/510.0)); 
-	bar3[67].drawrect3();
-	bar3[68] = rectangel3(screenWidth * (300.0/820.0),screenHeight * (175.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[68].drawrect3();
-
-
-	bar3[69] = rectangel3(screenWidth * (705.0/820.0),screenHeight * (355.0/510.0),screenWidth * (90.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[69].drawrect3();
-	bar3[70] = rectangel3(screenWidth * (705.0/820.0),screenHeight * (355.0/510.0),screenWidth * (5.0/820.0),screenHeight * (105.0/510.0)); 
-	bar3[70].drawrect3();
-	bar3[71] = rectangel3(screenWidth * (705.0/820.0),screenHeight * (410.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[71].drawrect3();
-	bar3[72] = rectangel3(screenWidth * (805.0/820.0),screenHeight * (395.0/510.0),screenWidth * (5.0/820.0),screenHeight * (105.0/510.0)); 
-	bar3[72].drawrect3();
-	bar3[73] = rectangel3(screenWidth * (765.0/820.0),screenHeight * (500.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[73].drawrect3();
-
-	bar3[74] = rectangel3(screenWidth * (445.0/820.0),screenHeight * (0.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[74].drawrect3();
-	bar3[75] = rectangel3(screenWidth * (555.0/820.0),screenHeight * (60.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[75].drawrect3();
-	bar3[76] = rectangel3(screenWidth * (555.0/820.0),screenHeight * (60.0/510.0),screenWidth * (5.0/820.0),screenHeight * (45.0/510.0)); 
-	bar3[76].drawrect3();
-	bar3[77] = rectangel3(screenWidth * (505.0/820.0),screenHeight * (0.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[77].drawrect3();
-
-
-	
-	bar3[78] = rectangel3(screenWidth * (290.0/820.0),screenHeight * (250.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[78].drawrect3();
-	bar3[79] = rectangel3(screenWidth * (295.0/820.0),screenHeight * (350.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[79].drawrect3();
-	bar3[80] = rectangel3(screenWidth * (295.0/820.0),screenHeight * (350.0/510.0),screenWidth * (5.0/820.0),screenHeight * (45.0/510.0)); 
-	bar3[80].drawrect3();
-	bar3[81] = rectangel3(screenWidth * (355.0/820.0),screenHeight * (250.0/510.0),screenWidth * (5.0/820.0),screenHeight * (55.0/510.0)); 
-	bar3[81].drawrect3();
-	
-
-	bar3[82] = rectangel3(screenWidth * (195.0/820.0),screenHeight * (400.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[82].drawrect3();
-	bar3[83] = rectangel3(screenWidth * (195.0/820.0),screenHeight * (400.0/510.0),screenWidth * (5.0/820.0),screenHeight * (35.0/510.0)); 
-	bar3[83].drawrect3();
-
-
-	bar3[84] = rectangel3(screenWidth * (95.0/820.0),screenHeight * (410.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[84].drawrect3();
-	bar3[85] = rectangel3(screenWidth * (95.0/820.0),screenHeight * (410.0/510.0),screenWidth * (5.0/820.0),screenHeight * (35.0/510.0)); 
-	bar3[85].drawrect3();
-
-	bar3[86] = rectangel3(screenWidth * (580.0/820.0),screenHeight * (460.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[86].drawrect3();
-	bar3[87] = rectangel3(screenWidth * (580.0/820.0),screenHeight * (460.0/510.0),screenWidth * (5.0/820.0),screenHeight * (45.0/510.0)); 
-	bar3[87].drawrect3();
-	
-
-	bar3[88] = rectangel3(screenWidth * (0.0/820.0),screenHeight * (460.0/510.0),screenWidth * (55.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[88].drawrect3();
-	bar3[89] = rectangel3(screenWidth * (0.0/820.0),screenHeight * (460.0/510.0),screenWidth * (5.0/820.0),screenHeight * (45.0/510.0)); 
-	bar3[89].drawrect3();
-	
-
-	bar3[90] = rectangel3(screenWidth * (710.0/820.0),screenHeight * (260.0/510.0),screenWidth * (45.0/820.0),screenHeight * (5.0/510.0)); 
-	bar3[90].drawrect3();
-	bar3[91] = rectangel3(screenWidth * (710.0/820.0),screenHeight * (260.0/510.0),screenWidth * (5.0/820.0),screenHeight * (45.0/510.0)); 
-	bar3[91].drawrect3();
-	
-
-   
+struct HENEMYES
+{
+	int hx,hy,estate,hdir;
+}henemy[3];
+void enemypos3Set()//setting enemy position
+{
+	for(int i=0;i<3;i++)
+	{
+		henemy[i].hx=rand()%1487;//random settings of enemy's x-axis position
+		henemy[i].hy=rand()%724;
+		henemy[i].estate=1;
+		henemy[i].hdir=rand()%4;//random direction setting
+	}
+}
+void henemy3Show()//showing enemy's
+{
+	for(int i=0;i<3;i++)
+	{
+		if(henemy[i].hx+64<=dextersWidth && henemy[i].hx>=0 && henemy[i].hy>=screenHeight-dextersHeigth-4 && henemy[i].hy+64<=screenHeight)//check if the henemy's initial postion set in dexter's initial position then change the position in random place
+		{
+			henemy[i].hx=rand()%1487;
+			henemy[i].hy=rand()%724;
+		}
+		if(henemy[i].hx+64<=screenWidth && henemy[i].hx>=1486 && henemy[i].hy>=0 && henemy[i].hy+64<=screenHeight-724)//check if the enemy's initial postion set in destination's initial position then change the position in random place
+		{
+			henemy[i].hx=rand()%1487;
+			henemy[i].hy=rand()%724;
+		}
+		if(henemy[i].hx+64>screenWidth)//check that enemy is in the screen
+		{
+			henemy[i].hx=screenWidth-64;
+			henemy[i].hdir=rand()%4;
+		}
+		if(henemy[i].hy+64>screenHeight)//check that enemy is in the screen
+		{
+			henemy[i].hy=screenHeight-64;
+			henemy[i].hdir=rand()%4;
+		}
+		if(henemy[i].hx+64>=x && henemy[i].hx<=x+64 && henemy[i].hy+64>=y && henemy[i].hy<=y+64)//if enemy touch the dexter he lost
+		{
+			gamestate=lost;
+		}
+		if(enemy[i].ex<0)//check that enemy is in the screen
+		{
+			henemy[i].hx=0;
+			henemy[i].hdir=rand()%4;
+		}
+		if(henemy[i].hy<0)//check that enemy is in the screen
+		{
+			henemy[i].hy=0;
+			henemy[i].hdir=rand()%4;
+		}
+		/*for(int j=0;j<41;j++)
+		{
+			if(enemy[i].ex+64>barx[j] && enemy[i].ex<barx[j]+barDx[j] && enemy[i].ey+64>bary[j] && enemy[i].ey<bary[j]+barDy[j])
+			{
+				enemy[i].ex=rand()%1487;
+				enemy[i].ey=rand()%724;
+				j=-1;
+			}
+		}*/
+		if(henemy[i].estate)//
+		{
+			iShowBMP2(henemy[i].hx,henemy[i].hy,"eenn.bmp",0);
+		}
+	}
+}
+void moving3Enemy()//for enemy moving
+{
+	//printf("ENEMY");
+	for(int i=0;i<3;i++)//loop for 5 enemy's
+	{
+		if(henemy[i].hdir==0)//0 direction for right
+		{
+			henemy[i].hx+=enxSpeed;
+		}
+		else if(henemy[i].hdir==1)//1 direction for left
+		{
+			henemy[i].hx-=enxSpeed;
+		}
+		else if(henemy[i].hdir==2)//2 direction for up
+		{
+			henemy[i].hy+=enySpeed;
+		}
+		else
+		{
+			henemy[i].hy-=enySpeed;
+		}
+		/*if(enemy[i].ex+64<=screenWidth && enemy[i].ex>=1486 && enemy[i].ey>=0 && enemy[i].ey+64<=screenHeight-724)
+		{
+			enemy[i].ex;
+			enemy[i].ey;
+		}*/
+		for(int j=0;j<90;j++)//for checking collision with bars
+		{
+			if(henemy[i].hx+64>bar3x[j] && henemy[i].hx<bar3x[j]+bar3Dx[j] && henemy[i].hy+64>bar3y[j] && henemy[i].hy<bar3y[j]+bar3Dy[j])
+			{
+				if(henemy[i].hdir==0)
+				{
+					henemy[i].hx-=enxSpeed;
+					henemy[i].hdir=rand()%4;
+					if(henemy[i].hdir==0)
+					{
+						henemy[i].hdir=rand()%4;
+					}
+					else if(henemy[i].hdir==1)
+					{
+						henemy[i].hx-=enxSpeed;
+					}
+					else if(henemy[i].hdir==2)
+					{
+						henemy[i].hy+=enySpeed;
+					}
+					else
+					{
+						henemy[i].hy-=enySpeed;
+					}
+				}
+				else if(henemy[i].hdir==1)
+				{
+					henemy[i].hx+=enxSpeed;
+					henemy[i].hdir=rand()%4;
+					if(henemy[i].hdir==0)
+					{
+						henemy[i].hx+=enxSpeed;
+					}
+					else if(henemy[i].hdir==1)
+					{
+						henemy[i].hdir=rand()%4;
+					}
+					else if(henemy[i].hdir==2)
+					{
+						henemy[i].hy+=enySpeed;
+					}
+					else
+					{
+						henemy[i].hy-=enySpeed;
+					}
+				}
+				else if(henemy[i].hdir==2)
+				{
+					henemy[i].hy-=enxSpeed;
+					henemy[i].hdir=rand()%4;
+					if(henemy[i].hdir==0)
+					{
+						henemy[i].hx+=enxSpeed;
+					}
+					else if(henemy[i].hdir==1)
+					{
+						henemy[i].hx-=enxSpeed;
+					}
+					else if(henemy[i].hdir==2)
+					{
+						henemy[i].hdir=rand()%4;
+					}
+					else
+					{
+						henemy[i].hy-=enySpeed;
+					}
+				}
+				else
+				{
+					henemy[i].hy+=enxSpeed;
+					henemy[i].hdir=rand()%4;
+					if(henemy[i].hdir==0)
+					{
+						henemy[i].hx+=enxSpeed;
+					}
+					else if(henemy[i].hdir==1)
+					{
+						henemy[i].hx-=enxSpeed;
+					}
+					else if(henemy[i].hdir==2)
+					{
+						henemy[i].hy+=enySpeed;
+					}
+					else
+					{
+						henemy[i].hdir=rand()%4;
+					}
+				}
+				j=-1;
+			}
+		}
+	}
 }

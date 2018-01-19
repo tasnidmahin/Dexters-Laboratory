@@ -4,28 +4,59 @@
 */
 
 
-
 # include <iostream>
 #include <stdlib.h>
 #include<time.h>
 #include<string>
 # include "iGraphics.h"
 # include "bitmap_viewer.h"
+
+
 # include "level1.h"
 # include "level2.h"
 # include "level3.h"
-# include "menu.h"
+
 using namespace std;
+string s; 
+ 
 void iDraw()
 {
 	//place your drawing codes here
-	menushow();
+	if(gamestate == intro)
+	{
+		iClear();
+		iShowBMPAlternative(0,0,"introone.bmp");
+	}
+	if(gamestate == menu)
+	{
+		iClear();
+		iShowBMPAlternative(0,0,"menulast.bmp");
+	}
+	if(gamestate == hall_of_fame)
+	{
+		iClear();
+		iShowBMPAlternative(0,0,"halloffamelast.bmp");
+	}
+	if(gamestate == instruction)
+	{
+		iClear();
+		iShowBMPAlternative(0,0,"instructionslast.bmp");
+	}
+	if(gamestate == about)
+	{
+		iClear();
+		iShowBMPAlternative(0,0,"aboutlast.bmp");
+	}
 	if(gamestate == level1)
 	{
 		iClear();
+		//iShowBMPAlternative (0,0, "backlevel1.bmp");
 		drawbars();
-		iShowBMPAlternative (1486,0, "destination.bmp");
+		
+		iShowBMPAlternative (1486,0, "destinationlast.bmp");
+		//iShowBMP2(x,y,"dex1.bmp",0);
 		iSetTimer(150,movingEnemy);
+		iSetTimer(1000,time);
 		keyShow();
 		enemyShow();
 		if(!charstand)
@@ -50,31 +81,33 @@ void iDraw()
 		{
 			iShowBMP2(x,y,"dex1.bmp",0);
 		}
-		//string s=to_string(timeremaining);
-		//iText(600,screenHeight+5,s,GLUT_BITMAP_HELVETICA_18);
+		s=to_string(timeremaining);
+		//string s = lexical_cast<string>(timeremaining);		
+		//iText2(600,screenHeight+5,s,GLUT_BITMAP_HELVETICA_18);
 	}
 	if(gamestate==lost)
 	{
 		iClear();
-		iShowBMPAlternative(263,138,"Lost 1.bmp");
+		iShowBMPAlternative(0,0,"lostlast.bmp");
 	}
 	if(gamestate==level2)
 	{
-		x=screenWidth * (5.0/820.0);
-		y=screenHeight * (260.0/510.0);
 		iClear();
-		iShowBMPAlternative2(x,y,"dex1.bmp",0);
-	
+		iShowBMP2(dex_x,dex_y,"image_level2//dex1.bmp",0);
+		iShowBMPAlternative (1486,0, "destinationlast.bmp");
 	     puzzle();
 	}
 	if(gamestate==level3)
 	{
-		x=screenWidth * (5.0/820.0);
-		y=screenHeight * (260.0/510.0);
 		iClear();
-		iShowBMPAlternative2(x,y,"dex1.bmp",0);
-	
-	     puzzle3();
+		iShowBMPAlternative (0,0, "backlevel3.bmp");
+		draw3bars();
+		iShowBMP2(x,y,"dex1.bmp",0);
+		iShowBMPAlternative (1486,0, "destinationlast.bmp");
+		
+		iSetTimer(150,moving3Enemy);
+		gem3Show();
+		henemy3Show();
 	}
 }
 
@@ -95,25 +128,33 @@ void iMouse(int button, int state, int mx, int my)
 {
 	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
 	{
-		if(gamestate == menu)
+		if(gamestate == intro)
 		{
-			if(mx>=61 && mx<=182 && my>=383 && my<=423)
+			if(mx>=684 && mx<=873 && my>=190 && my<=280)
+			{
+				gamestate=menu;
+			}
+			
+		}
+		else if(gamestate == menu)
+		{
+			if(mx>=128 && mx<=458 && my>=527 && my<=627)
 			{
 				gamestate=level1;
 			}
-			if(mx>=61 && mx<=292 && my>=313 && my<=351)
+			if(mx>=128 && mx<=458 && my>=417 && my<=517)
 			{
 				gamestate=hall_of_fame;
 			}
-			if(mx>=61 && mx<=292 && my>=236 && my<=275)
+			if(mx>=128 && mx<=458 && my>=301 && my<=401)
 			{
 				gamestate=instruction;
 			}
-			if(mx>=61 && mx<=235 && my>=159 && my<=199)
+			if(mx>=128 && mx<=458 && my>=185 && my<=285)
 			{
 				gamestate=about;
 			}
-			if(mx>=61 && mx<=174 && my>=80 && my<=121)
+			if(mx>=128 && mx<=458 && my>=64 && my<=164)
 			{
 				exit(0);
 			}
@@ -145,7 +186,8 @@ void iPassiveMouseMove(int mx,int my)
 */
 void iKeyboard(unsigned char key)
 {
-	if(gamestate == hall_of_fame || gamestate == instruction || gamestate == about || gamestate == level1 || gamestate == level2 || gamestate==level3)
+	
+	if(gamestate == hall_of_fame || gamestate == instruction || gamestate == about || gamestate == level1 || gamestate == level2 || gamestate==level3 || gamestate==lost)
 	{
 		if(key == '\b')
 		{
@@ -291,6 +333,146 @@ void iKeyboard(unsigned char key)
 			gamestate=level3;
 		}
 	}
+	if(gamestate==level3)
+	{
+		if(key == 'd')
+		{
+			x+=xSpeed;
+			if(x>=screenWidth-dextersWidth)
+			{
+				x=screenWidth-dextersWidth;
+			}
+			else
+			{
+				for(int i=0;i<90;i++)
+				{
+					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
+					{
+						x-=xSpeed;
+						break;
+					}
+				}
+				for(int i=0;i<7;i++)
+				{
+					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
+					{
+						if(gem3[i].estate==1)
+						{
+							gem3[i].estate=0;
+							disCnt++;
+						}
+					}
+				}
+				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=7)
+				{
+					gamestate=about;
+				}
+			}
+		}
+		else if(key == 'a')
+		{
+			x-=xSpeed;
+			if(x<=0)
+			{
+				x=0;
+			}
+			else
+			{
+				for(int i=0;i<90;i++)
+				{
+					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
+					{
+						x+=xSpeed;
+						break;
+					}
+				}
+				for(int i=0;i<7;i++)
+				{
+					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
+					{
+						if(gem3[i].estate==1)
+						{
+							gem3[i].estate=0;
+							disCnt++;
+						}
+					}
+				}
+			}
+		}
+		else if(key == 'w')
+		{
+			y+=ySpeed ;
+			if(y>=screenHeight-dextersHeigth)
+			{
+				y=screenHeight-dextersHeigth;
+			}
+			else
+			{
+				for(int i=0;i<90;i++)
+				{
+					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
+					{
+						y-=ySpeed;
+						break;
+					}
+				}
+				for(int i=0;i<7;i++)
+				{
+					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
+					{
+						if(gem3[i].estate==1)
+						{
+							gem3[i].estate=0;
+							disCnt++;
+						}
+					}
+				}
+			}
+		}
+		else if(key == 's')
+		{
+			y-=ySpeed ;
+			if(y<=0)
+			{
+				y=0;
+			}
+			else
+			{
+				for(int i=0;i<90;i++)
+				{
+					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
+					{
+						y+=ySpeed;
+						break;
+					}
+				}
+				for(int i=0;i<7;i++)
+				{
+					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
+					{
+						if(gem3[i].estate==1)
+						{
+							gem3[i].estate=0;
+							disCnt++;
+						}
+					}
+				}
+				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=7)
+				{
+					gamestate=about;
+				}
+			}
+		}
+		else if(key == '2')
+		{
+			gamestate=level2;
+		}
+		else if(key == '3')
+		{
+			gamestate=level3;
+		}
+		
+	}
 	//place your codes for other keys here
 }
 
@@ -303,6 +485,20 @@ void iKeyboard(unsigned char key)
 	GLUT_KEY_LEFT, GLUT_KEY_UP, GLUT_KEY_RIGHT, GLUT_KEY_DOWN, GLUT_KEY_PAGE UP,
 	GLUT_KEY_PAGE DOWN, GLUT_KEY_HOME, GLUT_KEY_END, GLUT_KEY_INSERT
 */
+/*void iSpecialKeyboard(unsigned char key)
+{
+
+	/*if(key == GLUT_KEY_END)
+	{
+		exit(0);
+	}*/
+	/*if(gamestate == level2){
+
+		 SpectialKeyBordControl_Level2( key);
+	}*/
+	
+	//place your codes for other keys here
+//}
 void iSpecialKeyboard(unsigned char key)
 {
 
@@ -462,15 +658,22 @@ void iSpecialKeyboard(unsigned char key)
 			}
 		}
 	}
+	if(gamestate == level2){
+
+		 SpectialKeyBordControl_Level2( key);
+	}
 	
 	//place your codes for other keys here
 }
+
 //
 int main()
 {
 	//place your own initialization codes here.
 	keyposSet();
 	enemyposSet();
+	keypos3Set();
+	enemypos3Set();
 	//printf("%d\n",gamestate);
 	if(gamestate==level1)
 	{

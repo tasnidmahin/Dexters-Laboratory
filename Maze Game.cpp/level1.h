@@ -9,6 +9,7 @@
 #define enxSpeed 3
 #define enySpeed 3
 #define menu 1
+#define intro 1000
 #define hall_of_fame 2
 #define instruction 3
 #define about 4
@@ -16,24 +17,27 @@
 #define level2 101
 #define level3 201
 #define lost 20
-int gamestate= menu;
-int disCnt=0;//taken key counter
-int sh=screenHeight,bh=barWidth;
-int barx[]={72,314,0,148,556,72,462,556,0,999,1200,1200,724,999,999,1076,76,148,420,894,1300,1230,550,72,386,242,658,923,1338,1124,1465,999,1359,72,321,1235,1086,790,890,1010,470};//for looping x axis for bars of level1
-int barDx[]={170,170,314,238,290,590,120,140,400,320,280,280,400,360,288,180,165,224,200,120,250,225,220,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh};//for looping x axis length for bars of level1
-int bary[]={sh-72,sh-72,sh-386,sh-304,sh-72,sh-464,sh-304,sh-148,sh-536,sh-72,sh-722,sh-648,sh-722,sh-386,sh-216,sh-298,sh-722,sh-648,sh-722,sh-612,sh-570,sh-480,sh-642,sh-304,sh-386,sh-228,sh-384,sh-295,sh-718,sh-722,sh-400,sh-384,sh-386,0,0,sh-212,sh-212,sh-525,sh-718,sh-612,sh-652};//for looping y axis for bars of level1
-int barDy[]={bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,160,232,160,240,295,72,255,400,170,225,170,65,50,50,380,205,105,105};//for looping y axis length for bars of level1
+int gamestate=intro,disCnt=0;
+#define sh screenHeight
+#define bh barWidth
+int barx[]={72,314,0,148,556,72,462,556,0,999,1200,1200,724,999,999,1076,76,148,420,894,1300,1230,550,72,386,242,658,923,1338,1124,1465,999,1359,72,321,1235,1086,790,890,1010,470};
+//for looping x axis for bars of level1
+int barDx[]={170,170,314,238,290,590,120,140,400,320,280,280,400,360,288,180,165,224,200,120,250,225,220,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh};
+//for looping x axis length for bars of level1
+int bary[]={sh-72,sh-72,sh-386,sh-304,sh-72,sh-464,sh-304,sh-148,sh-536,sh-72,sh-722,sh-648,sh-722,sh-386,sh-216,sh-298,sh-722,sh-648,sh-722,sh-612,sh-570,sh-480,sh-642,sh-304,sh-386,sh-228,sh-384,sh-295,sh-718,sh-722,sh-400,sh-384,sh-386,0,0,sh-212,sh-212,sh-525,sh-718,sh-612,sh-652};
+//for looping y axis for bars of level1
+int barDy[]={bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,160,232,160,240,295,72,255,400,170,225,170,65,50,50,380,205,105,105};
+//for looping y axis length for bars of level1
 int mposx,  mposy,x=0,y=screenHeight-dextersHeigth-4;
-
 char backwardRun[7][20]={"RunB6.bmp","RunB5.bmp","RunB4.bmp","RunB3.bmp","RunB2.bmp","RunB1.bmp"};
 char forkwardRun[5][20]={"RunF1.bmp","RunF2.bmp","RunF3.bmp","RunF4.bmp"};
 bool charstand = true,chforward=false,backward=false;
 int standcounter = 0;
-int index = 0,timecounter=0,timeremaining=60;
-/*
-	function iDraw() is called again and again by the system.
-*/
+int index = 0,timecounter=0;
+long long timeremaining=60;
+
 //for drawing the bars of level1
+
 void drawbars()
 {
 	iSetColor(0,250,0);
@@ -322,4 +326,8 @@ void movingEnemy()//for enemy moving
 			}
 		}
 	}
+}
+void time()
+{
+		timeremaining--;
 }
