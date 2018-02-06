@@ -1,69 +1,51 @@
 /*
-    Author: Tasnid Mahin
-    Version: 1.0
+    Author: Tasnid Mahin, Dip Chowdhury, Shams-Al-Ahsan.
+    Version: 2.0
 */
+
 
 
 # include <iostream>
 #include <stdlib.h>
+#include <string.h>
 #include<time.h>
-#include<string>
+#include <algorithm>
+#include <string>
 # include "iGraphics.h"
-# include "bitmap_viewer.h"
-
-
-# include "level1.h"
-# include "level2.h"
-# include "level3.h"
-
+//# include "levelone.h"
+//# include "leveltwo.h"
+# include "levelthree.h"
+//# include "halloffame.h"
+//# include "menu.h"
 using namespace std;
-string s; 
- 
+int BackGroundImag_Load[3];
+char BackGroundImage[3][50] = {
+
+				"backlastone.jpg","backlasttwo.jpg", "backlasttwo.jpg"
+};
+long long callscorem()
+{
+	long long fnsc=callscore3();
+	return fnsc;
+}
+long long finalscore=0;
 void iDraw()
 {
 	//place your drawing codes here
-	if(gamestate == intro)
-	{
-		iClear();
-		iShowBMPAlternative(0,0,"introone.bmp");
-	}
-	if(gamestate == menu)
-	{
-		iClear();
-		iShowBMPAlternative(0,0,"menulast.bmp");
-	}
-	if(gamestate == hall_of_fame)
-	{
-		iClear();
-		iShowBMPAlternative(0,0,"halloffamelast.bmp");
-	}
-	if(gamestate == instruction)
-	{
-		iClear();
-		iShowBMPAlternative(0,0,"instructionslast.bmp");
-	}
-	if(gamestate == about)
-	{
-		iClear();
-		iShowBMPAlternative(0,0,"aboutlast.bmp");
-	}
+	menu1();//call menu
 	if(gamestate == level1)
 	{
 		iClear();
+		//iShowImage(0,0,screenWidth,screenHeight,BackGroundImag_Load[0]);
 		//iShowBMPAlternative (0,0, "backlevel1.bmp");
 		drawbars();
-		
-		iShowBMPAlternative (1486,0, "destinationlast.bmp");
-		//iShowBMP2(x,y,"dex1.bmp",0);
-		iSetTimer(150,movingEnemy);
-		iSetTimer(1000,time);
-		if(timeremaining<=0)
-		{
-			gamestate=lost;
-		}
+		//iShowBMPAlternative (1486,0, "destinationlast.bmp");
+		iShowBMP2(1486,0, "destinationlast.bmp",0);	
+		//iSetTimer(150,movingEnemy);
+		movingEnemy();
 		keyShow();
 		enemyShow();
-		if(!charstand)
+		if(!charstand)//character render
 		{
 			if(chforward ==true)
 			{
@@ -84,36 +66,92 @@ void iDraw()
 		else
 		{
 			iShowBMP2(x,y,"dex1.bmp",0);
-		}
-		s=to_string(timeremaining);
-		//string s = lexical_cast<string>(timeremaining);		
-		//iText2(600,screenHeight+5,s,GLUT_BITMAP_HELVETICA_18);
-		iText(600,screenHeight+5,(char*)s.c_str(),GLUT_BITMAP_HELVETICA_18);
-	}
-	if(gamestate==lost)
-	{
-		iClear();
-		iShowBMPAlternative(0,0,"lostlast.bmp");
+		}	
 	}
 	if(gamestate==level2)
 	{
 		iClear();
-		iShowBMP2(dex_x,dex_y,"image_level2//dex1.bmp",0);
-		iShowBMPAlternative (1486,0, "destinationlast.bmp");
-	     puzzle();
+		//iShowImage(0,0,screenWidth,screenHeight,BackGroundImag_Load[2]);
+		puzzle();
+		iShowBMP2(1486,0, "destinationlast.bmp",0);
+		//iShowBMP2(dex_x,dex_y,"image_level2//dex1.bmp",0);
+		//iSetTimer(150,movingEnemy_level2);
+		movingEnemy_level2();
+		keyShow_level2();
+		enemyShow_level2();
+		if(!char2stand)//character render
+		{
+			if(ch2forward ==true)
+			{
+				iShowBMP2(dex_x,dex_y,forkward2Run[index2],0);
+			}
+			else if(back2ward == true)
+			{
+				iShowBMP2(dex_x,dex_y,backward2Run[index2],0);
+			}
+			stand2counter++;
+			if(stand2counter>30)
+			{
+				char2stand = true;
+				ch2forward =true;
+				back2ward =true;
+			}
+		}
+		else
+		{
+			iShowBMP2(dex_x,dex_y,"dex1.bmp",0);
+		}
 	}
 	if(gamestate==level3)
 	{
 		iClear();
-		iShowBMPAlternative (0,0, "backlevel3.bmp");
+		//iShowImage(0,0,screenWidth,screenHeight,BackGroundImag_Load[1]);
+		//iShowBMP2(0,0, "backlevel3.bmp",0);
 		draw3bars();
-		iShowBMP2(x,y,"dex1.bmp",0);
-		iShowBMPAlternative (1486,0, "destinationlast.bmp");
-		
-		iSetTimer(150,moving3Enemy);
+		//iShowBMP2(x3,y3,"dex1.bmp",0);
+		//iShowBMPAlternative (1486,0, "destinationlast.bmp");
+		iShowBMP2(1486,0, "destinationlast.bmp",0);
+		//iSetTimer(1000,moving3Enemy);
 		gem3Show();
 		henemy3Show();
+		moving3Enemy();
+		if(!char3stand)//character render
+		{
+			if(ch3forward ==true)
+			{
+				iShowBMP2(x3,y3,forkward3Run[index3],0);
+			}
+			else if(back3ward == true)
+			{
+				iShowBMP2(x3,y3,backward3Run[index3],0);
+			}
+			stand3counter++;
+			if(stand3counter>30)
+			{
+				char3stand = true;
+				ch3forward =true;
+				back3ward =true;
+			}
+		}
+		else
+		{
+			iShowBMP2(x3,y3,"dex1.bmp",0);
+		}
 	}
+	if(gamestate==lost)
+	{
+		if(finalscore==0)
+		{
+			finalscore=callscorem();
+		}
+		string s =to_string(finalscore);
+		iClear();
+		iShowBMPAlternative(0,0,"lostlast.bmp");
+		iText(790,350,"YOUR SCORE",GLUT_BITMAP_TIMES_ROMAN_24);
+		iText(850,325,(char*)s.c_str(),GLUT_BITMAP_TIMES_ROMAN_24);
+	}
+	
+	timedraw();//show time and score
 }
 
 /*
@@ -131,45 +169,7 @@ void iMouseMove(int mx, int my)
 */
 void iMouse(int button, int state, int mx, int my)
 {
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		if(gamestate == intro)
-		{
-			if(mx>=684 && mx<=873 && my>=190 && my<=280)
-			{
-				gamestate=menu;
-			}
-			
-		}
-		else if(gamestate == menu)
-		{
-			if(mx>=128 && mx<=458 && my>=527 && my<=627)
-			{
-				gamestate=level1;
-			}
-			if(mx>=128 && mx<=458 && my>=417 && my<=517)
-			{
-				gamestate=hall_of_fame;
-			}
-			if(mx>=128 && mx<=458 && my>=301 && my<=401)
-			{
-				gamestate=instruction;
-			}
-			if(mx>=128 && mx<=458 && my>=185 && my<=285)
-			{
-				gamestate=about;
-			}
-			if(mx>=128 && mx<=458 && my>=64 && my<=164)
-			{
-				exit(0);
-			}
-		}
-		//place your codes here
-	}
-	if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-	{
-		//place your codes here
-	}
+	menubutton(button,state, mx,my);
 }
 /*iPassiveMouseMove is called to detect and use
 the mouse point without pressing any button */
@@ -177,11 +177,10 @@ the mouse point without pressing any button */
 void iPassiveMouseMove(int mx,int my)
 {
 	//place your code here
-
- mposx = mx;
- mposy = my;
- if(mx== 2){}        /*Something to do with mx*/
- else if(my== 2){}   /*Something to do with my*/
+	 mposx = mx;
+	 mposy = my;
+	 if(mx== 2){}        /*Something to do with mx*/
+	 else if(my== 2){}   /*Something to do with my*/
 
 }
  
@@ -191,292 +190,37 @@ void iPassiveMouseMove(int mx,int my)
 */
 void iKeyboard(unsigned char key)
 {
-	
-	if(gamestate == hall_of_fame || gamestate == instruction || gamestate == about || gamestate == level1 || gamestate == level2 || gamestate==level3 || gamestate==lost)
+	//gamestate operation & navigation
+	if(gamestate == hall_of_fame || gamestate == instruction || gamestate == about || gamestate == level1 || gamestate == level2 || gamestate==level3 || gamestate==lost || gamestate==menu || gamestate==finish)
 	{
 		if(key == '\b')
 		{
 			gamestate = menu;
-		}
-	}
-	if(gamestate==level1)
-	{
-		if(key == 'd')
-		{
-			x+=xSpeed;
-			if(x>=screenWidth-dextersWidth)
-			{
-				x=screenWidth-dextersWidth;
-			}
-			else
-			{
-				for(int i=0;i<41;i++)
-				{
-					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-					{
-						x-=xSpeed;
-						break;
-					}
-				}
-				for(int i=0;i<5;i++)
-				{
-					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-					{
-						if(key1[i].state==1)
-						{
-							key1[i].state=0;
-							disCnt++;
-						}
-					}
-				}
-				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
-				{
-					gamestate=level2;
-				}
-			}
-		}
-		else if(key == 'a')
-		{
-			x-=xSpeed;
-			if(x<=0)
-			{
-				x=0;
-			}
-			else
-			{
-				for(int i=0;i<41;i++)
-				{
-					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-					{
-						x+=xSpeed;
-						break;
-					}
-				}
-				for(int i=0;i<5;i++)
-				{
-					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-					{
-						if(key1[i].state==1)
-						{
-							key1[i].state=0;
-							disCnt++;
-						}
-					}
-				}
-			}
-		}
-		else if(key == 'w')
-		{
-			y+=ySpeed ;
-			if(y>=screenHeight-dextersHeigth)
-			{
-				y=screenHeight-dextersHeigth;
-			}
-			else
-			{
-				for(int i=0;i<41;i++)
-				{
-					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-					{
-						y-=ySpeed;
-						break;
-					}
-				}
-				for(int i=0;i<5;i++)
-				{
-					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-					{
-						if(key1[i].state==1)
-						{
-							key1[i].state=0;
-							disCnt++;
-						}
-					}
-				}
-			}
-		}
-		else if(key == 's')
-		{
-			y-=ySpeed ;
-			if(y<=0)
-			{
-				y=0;
-			}
-			else
-			{
-				for(int i=0;i<41;i++)
-				{
-					if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-					{
-						y+=ySpeed;
-						break;
-					}
-				}
-				for(int i=0;i<5;i++)
-				{
-					if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-					{
-						if(key1[i].state==1)
-						{
-							key1[i].state=0;
-							disCnt++;
-						}
-					}
-				}
-				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
-				{
-					gamestate=level2;
-				}
-			}
+			PlaySound("music\\menubgm.wav", NULL, SND_ASYNC);
 		}
 		else if(key == '2')
 		{
 			gamestate=level2;
+			PlaySound("music\\menuoption.wav", NULL, SND_ASYNC);
 		}
 		else if(key == '3')
 		{
 			gamestate=level3;
+			PlaySound("music\\menuoption.wav", NULL, SND_ASYNC);
 		}
 	}
-	if(gamestate==level3)
+	
+	if(gamestate == level2)
 	{
-		if(key == 'd')
-		{
-			x+=xSpeed;
-			if(x>=screenWidth-dextersWidth)
-			{
-				x=screenWidth-dextersWidth;
-			}
-			else
-			{
-				for(int i=0;i<90;i++)
-				{
-					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
-					{
-						x-=xSpeed;
-						break;
-					}
-				}
-				for(int i=0;i<7;i++)
-				{
-					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
-					{
-						if(gem3[i].estate==1)
-						{
-							gem3[i].estate=0;
-							disCnt++;
-						}
-					}
-				}
-				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=7)
-				{
-					gamestate=about;
-				}
-			}
-		}
-		else if(key == 'a')
-		{
-			x-=xSpeed;
-			if(x<=0)
-			{
-				x=0;
-			}
-			else
-			{
-				for(int i=0;i<90;i++)
-				{
-					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
-					{
-						x+=xSpeed;
-						break;
-					}
-				}
-				for(int i=0;i<7;i++)
-				{
-					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
-					{
-						if(gem3[i].estate==1)
-						{
-							gem3[i].estate=0;
-							disCnt++;
-						}
-					}
-				}
-			}
-		}
-		else if(key == 'w')
-		{
-			y+=ySpeed ;
-			if(y>=screenHeight-dextersHeigth)
-			{
-				y=screenHeight-dextersHeigth;
-			}
-			else
-			{
-				for(int i=0;i<90;i++)
-				{
-					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
-					{
-						y-=ySpeed;
-						break;
-					}
-				}
-				for(int i=0;i<7;i++)
-				{
-					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
-					{
-						if(gem3[i].estate==1)
-						{
-							gem3[i].estate=0;
-							disCnt++;
-						}
-					}
-				}
-			}
-		}
-		else if(key == 's')
-		{
-			y-=ySpeed ;
-			if(y<=0)
-			{
-				y=0;
-			}
-			else
-			{
-				for(int i=0;i<90;i++)
-				{
-					if(x+dextersWidth>bar3x[i] && x<bar3x[i]+bar3Dx[i] && y+dextersHeigth>bar3y[i] && y<bar3y[i]+bar3Dy[i])
-					{
-						y+=ySpeed;
-						break;
-					}
-				}
-				for(int i=0;i<7;i++)
-				{
-					if(x+dextersWidth>gem3[i].gx && x<gem3[i].gx+32 && y+dextersHeigth>gem3[i].gy && y<gem3[i].gy+32)
-					{
-						if(gem3[i].estate==1)
-						{
-							gem3[i].estate=0;
-							disCnt++;
-						}
-					}
-				}
-				if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=7)
-				{
-					gamestate=about;
-				}
-			}
-		}
-		else if(key == '2')
-		{
-			gamestate=level2;
-		}
-		else if(key == '3')
-		{
-			gamestate=level3;
-		}
-		
+		iKeyBordControl_Level2(key);
+	}
+	if(gamestate == level1)
+	{
+		iKeyBordControl_Level1(key);
+	}
+	if(gamestate == level3)
+	{
+		iKeyBordControl_Level3(key);
 	}
 	//place your codes for other keys here
 }
@@ -490,20 +234,6 @@ void iKeyboard(unsigned char key)
 	GLUT_KEY_LEFT, GLUT_KEY_UP, GLUT_KEY_RIGHT, GLUT_KEY_DOWN, GLUT_KEY_PAGE UP,
 	GLUT_KEY_PAGE DOWN, GLUT_KEY_HOME, GLUT_KEY_END, GLUT_KEY_INSERT
 */
-/*void iSpecialKeyboard(unsigned char key)
-{
-
-	/*if(key == GLUT_KEY_END)
-	{
-		exit(0);
-	}*/
-	/*if(gamestate == level2){
-
-		 SpectialKeyBordControl_Level2( key);
-	}*/
-	
-	//place your codes for other keys here
-//}
 void iSpecialKeyboard(unsigned char key)
 {
 
@@ -511,161 +241,17 @@ void iSpecialKeyboard(unsigned char key)
 	{
 		exit(0);
 	}*/
-	if(key == GLUT_KEY_RIGHT)
-	{
-		x+=xSpeed;
-		standcounter=0;
-		index++;
-		chforward =true;
-		charstand=false;
-		backward =false;
-		if(index>3)
-		{
-			index=0;
-		}
-		if(x>=screenWidth-dextersWidth)
-		{
-			x=screenWidth-dextersWidth;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					x-=xSpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					if(key1[i].state==1)
-					{
-						key1[i].state=0;
-						disCnt++;
-					}
-				}
-			}
-			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
-			{
-				gamestate=level2;
-			}
-		}
-	}
-	else if(key == GLUT_KEY_LEFT)
-	{
-		x-=xSpeed;
-		index++;
-		standcounter=0;
-		chforward = false;
-		charstand=false;
-		backward =true;
-		if(index>5)
-		{
-			index=0;
-		}
-		if(x<=0)
-		{
-			x=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					x+=xSpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					if(key1[i].state==1)
-					{
-						key1[i].state=0;
-						disCnt++;
-					}
-				}
-			}
-		}
-	}
-	else if(key ==  GLUT_KEY_UP)
-	{
-		y+=ySpeed ;
-		charstand =true;
-		chforward =false;
-		backward =false;
-		if(y>=screenHeight-dextersHeigth)
-		{
-			y=screenHeight-dextersHeigth;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					y-=ySpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					if(key1[i].state==1)
-					{
-						key1[i].state=0;
-						disCnt++;
-					}
-				}
-			}
-		}
-	}
-	else if(key == GLUT_KEY_DOWN)
-	{
-		y-=ySpeed ;
-		charstand =true;
-		chforward =false;
-		backward =false;
-		if(y<=0)
-		{
-			y=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					y+=ySpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					if(key1[i].state==1)
-					{
-						key1[i].state=0;
-						disCnt++;
-					}
-				}
-			}
-			if(x+64>screenWidth-64 && x<=screenWidth && y+64>=0 && y<=screenHeight-724 && disCnt>=5)
-			{
-				gamestate=level2;
-			}
-		}
-	}
-	if(gamestate == level2){
+	if(gamestate == level1){//key control function call
 
-		 SpectialKeyBordControl_Level2( key);
+		 SpecialKeyBoardControl_Level1( key);
+	}
+	else if(gamestate == level2){
+
+		 SpecialKeyBoardControl_Level2( key);
+	}
+	else if(gamestate == level3){
+
+		 SpecialKeyBoardControl_Level3( key);
 	}
 	
 	//place your codes for other keys here
@@ -674,9 +260,14 @@ void iSpecialKeyboard(unsigned char key)
 //
 int main()
 {
+
+	main_halloffame();//function called from header file
 	//place your own initialization codes here.
 	keyposSet();
 	enemyposSet();
+	keypostionset();//key postion function for level2
+	//iSetTimer(150,movingEnemy_level2);
+	enemyposSet_LEVEL2();
 	keypos3Set();
 	enemypos3Set();
 	//printf("%d\n",gamestate);
@@ -685,6 +276,13 @@ int main()
 		//printf("MHN\n");
 		//iSetTimer(150,movingEnemy);
 	}
-	iInitialize(screenWidth, screenHeight+48, "Dexters' Laboratory");
+	iInitialize(screenWidth, screenHeight, "Dexters' Laboratory");
+	//PlaySound("music", NULL, SND_LOOP | SND_ASYNC);
+	PlaySound("music\\gameopen.wav", NULL, SND_ASYNC);
+	BackGroundImag_Load[0] = iLoadImage(BackGroundImage[0]);//jpg image load
+	BackGroundImag_Load[1] = iLoadImage(BackGroundImage[1]);
+	BackGroundImag_Load[2] = iLoadImage(BackGroundImage[2]);
+
+	iStart();
 	return 0;
 }

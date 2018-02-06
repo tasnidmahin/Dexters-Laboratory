@@ -20,16 +20,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="level1.h">
+    <ClInclude Include="levelone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="level2.h">
+    <ClInclude Include="leveltwo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="level3.h">
+    <ClInclude Include="levelthree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halloffame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
