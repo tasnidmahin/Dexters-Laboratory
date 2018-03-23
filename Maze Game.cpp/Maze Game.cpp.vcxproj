@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{08C22439-D08F-4773-89A6-DF683469A0AE}</ProjectGuid>
     <RootNamespace>MazeGamecpp</RootNamespace>
+    <ProjectName>dexterslaboratory</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -61,6 +62,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="iMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="halloffame.h" />
+    <ClInclude Include="levelone.h" />
+    <ClInclude Include="levelthree.h" />
+    <ClInclude Include="leveltwo.h" />
+    <ClInclude Include="menu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

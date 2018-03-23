@@ -19,4 +19,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="levelone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="leveltwo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="levelthree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="halloffame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

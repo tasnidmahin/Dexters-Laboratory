@@ -1,321 +1,157 @@
 /*
-    Author: Tasnid Mahin
-    Version: 1.0
+    Author: Tasnid Mahin, Dip Chowdhury, Shams-Al-Ahsan.
+    Version: 2.0
 */
 
 
 
 # include <iostream>
 #include <stdlib.h>
+#include <string.h>
 #include<time.h>
-using namespace std;
+#include <algorithm>
+#include <string>
 # include "iGraphics.h"
-# include "bitmap_viewer.h"
-#define screenWidth 1550
-#define screenHeight 788
-#define dextersWidth 64
-#define dextersHeigth 64
-#define barWidth 4
-#define xSpeed 10
-#define ySpeed 10
-int gamestate=1,disCnt=0;
-int sh=screenHeight,bh=barWidth;
-int barx[]={72,314,0,148,556,72,462,556,0,999,1200,1200,724,999,999,1076,76,148,420,894,1300,1230,550,72,386,242,658,923,1338,1124,1465,999,1359,72,321,1235,1086,790,890,1010,470};
-int barDx[]={170,170,314,238,290,590,120,140,400,320,280,280,400,360,288,180,165,224,200,120,250,225,220,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh};
-int bary[]={sh-72,sh-72,sh-386,sh-304,sh-72,sh-464,sh-304,sh-148,sh-536,sh-72,sh-722,sh-648,sh-722,sh-386,sh-216,sh-298,sh-722,sh-648,sh-722,sh-612,sh-570,sh-480,sh-642,sh-304,sh-386,sh-228,sh-384,sh-295,sh-718,sh-722,sh-400,sh-384,sh-386,0,0,sh-212,sh-212,sh-525,sh-718,sh-612,sh-652};
-int barDy[]={bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,bh,160,232,160,240,295,72,255,400,170,225,170,65,50,50,380,205,105,105};
-int mposx,  mposy,x=0,y=screenHeight-dextersHeigth-4;
-/*
-	function iDraw() is called again and again by the system.
-*/
-void drawbars()
-{
-	iSetColor(0,250,0);
-	iFilledRectangle(72,screenHeight-72,170,barWidth);
-	iFilledRectangle(314,screenHeight-72,170,barWidth);
-	iFilledRectangle(0,screenHeight-386,314,barWidth);
-	iFilledRectangle(148,screenHeight-304,238,barWidth);
-	iFilledRectangle(556,screenHeight-72,290,barWidth);
-	iFilledRectangle(72,screenHeight-464,590,barWidth);
-	iFilledRectangle(462,screenHeight-304,120,barWidth);
-	iFilledRectangle(556,screenHeight-148,140,barWidth);
-	iFilledRectangle(0,screenHeight-536,400,barWidth);
-	iFilledRectangle(999,screenHeight-72,320,barWidth);
-	iFilledRectangle(1200,screenHeight-722,280,barWidth);
-	iFilledRectangle(1200,screenHeight-648,280,barWidth);
-	iFilledRectangle(724,screenHeight-722,400,barWidth);
-	iFilledRectangle(999,screenHeight-386,360,barWidth);
-	iFilledRectangle(999,screenHeight-216,288,barWidth);
-	iFilledRectangle(1076,screenHeight-298,180,barWidth);
-	iFilledRectangle(76,screenHeight-722,165,barWidth);
-	iFilledRectangle(148,screenHeight-648,224,barWidth);
-	iFilledRectangle(420,screenHeight-722,200,barWidth);
-	iFilledRectangle(894,screenHeight-612,120,barWidth);
-	iFilledRectangle(1300,screenHeight-570,250,barWidth);
-	iFilledRectangle(1230,screenHeight-480,225,barWidth);
-	iFilledRectangle(550,screenHeight-642,220,barWidth);//23
+//# include "levelone.h"
+//# include "leveltwo.h"
+# include "levelthree.h"
+//# include "halloffame.h"
+//# include "menu.h"
+using namespace std;
+int BackGroundImag_Load[3];
+char BackGroundImage[3][50] = {
 
-
-	iFilledRectangle(72,screenHeight-304,barWidth,160);
-	iFilledRectangle(386,screenHeight-386,barWidth,232);
-	iFilledRectangle(242,screenHeight-228,barWidth,160);
-	iFilledRectangle(658,screenHeight-384,barWidth,240);
-	iFilledRectangle(923,screenHeight-295,barWidth,295);
-	iFilledRectangle(1338,screenHeight-718,barWidth,72);
-	iFilledRectangle(1124,screenHeight-722,barWidth,255);
-	iFilledRectangle(1465,screenHeight-400,barWidth,400);
-	iFilledRectangle(999,screenHeight-384,barWidth,170);
-	iFilledRectangle(1359,screenHeight-386,barWidth,225);
-	iFilledRectangle(72,0,barWidth,170);
-	iFilledRectangle(321,0,barWidth,65);
-	iFilledRectangle(1235,screenHeight-212,barWidth,50);
-	iFilledRectangle(1086,screenHeight-212,barWidth,50);
-	iFilledRectangle(790,screenHeight-525,barWidth,380);
-	iFilledRectangle(890,screenHeight-718,barWidth,205);
-	iFilledRectangle(1010,screenHeight-612,barWidth,105);
-	iFilledRectangle(470,screenHeight-652,barWidth,105);//18
+				"backlastone.jpg","backlasttwo.jpg", "backlasttwo.jpg"
+};
+long long callscorem()
+{
+	long long fnsc=callscore3();
+	return fnsc;
 }
-struct KEYS
-{
-	int kx,ky,state;
-}key1[5];
-void keyposSet()
-{
-	srand(time(0));
-	for(int i=0;i<5;i++)
-	{
-		key1[i].kx=rand()%1519;
-		key1[i].ky=rand()%757;
-		key1[i].state=1;
-	}
-}
-void keyShow()
-{
-	for(int i=0;i<5;i++)
-	{
-		if(key1[i].kx+32<=dextersWidth && key1[i].kx>=0 && key1[i].ky>=screenHeight-dextersHeigth-4 && key1[i].ky+32<=screenHeight)
-		{
-			key1[i].kx=rand()%1519;
-			key1[i].ky=rand()%757;
-		}
-		if(key1[i].kx+32<=screenWidth && key1[i].kx>=1486 && key1[i].ky>=0 && key1[i].ky+32<=screenHeight-724)
-		{
-			key1[i].kx=rand()%1519;
-			key1[i].ky=rand()%757;
-		}
-		if(key1[i].kx+64>screenWidth)
-		{
-			key1[i].kx=screenWidth-64;
-		}
-		if(key1[i].ky+64>screenHeight)
-		{
-			key1[i].kx=screenHeight-64;
-		}
-		for(int j=0;j<41;j++)
-		{
-			if(key1[i].kx+32>barx[j] && key1[i].kx<barx[j]+barDx[j] && key1[i].ky+32>bary[j] && key1[i].ky<bary[j]+barDy[j])
-			{
-				key1[i].kx=rand()%1519;
-				key1[i].ky=rand()%757;
-				j=-1;
-			}
-		}
-		if(key1[i].state)
-		{
-			iShowBMP2(key1[i].kx,key1[i].ky,"key.bmp",0);
-		}
-	}
-}
-struct ENEMYES
-{
-	int ex,ey,state,dir;
-}enemy[3];
-void enemyposSet()
-{
-	for(int i=0;i<3;i++)
-	{
-		enemy[i].ex=rand()%1487;
-		enemy[i].ey=rand()%724;
-		enemy[i].state=1;
-		enemy[i].dir=rand()%4;
-	}
-}
-void enemyShow()
-{
-	for(int i=0;i<3;i++)
-	{
-		if(enemy[i].ex+64<=dextersWidth && enemy[i].ex>=0 && enemy[i].ey>=screenHeight-dextersHeigth-4 && enemy[i].ey+64<=screenHeight)
-		{
-			enemy[i].ex=rand()%1487;
-			enemy[i].ey=rand()%724;
-		}
-		if(enemy[i].ex+64<=screenWidth && enemy[i].ex>=1486 && enemy[i].ey>=0 && enemy[i].ey+64<=screenHeight-724)
-		{
-			enemy[i].ex=rand()%1487;
-			enemy[i].ey=rand()%724;
-		}
-		if(enemy[i].ex+64>screenWidth)
-		{
-			enemy[i].ex=screenWidth-64;
-			enemy[i].dir=rand()%4;
-		}
-		if(enemy[i].ey+64>screenHeight)
-		{
-			enemy[i].ey=screenHeight-64;
-			enemy[i].dir=rand()%4;
-		}
-		if(enemy[i].ex<0)
-		{
-			enemy[i].ex=0;
-			enemy[i].dir=rand()%4;
-		}
-		if(enemy[i].ey<0)
-		{
-			enemy[i].ey=0;
-			enemy[i].dir=rand()%4;
-		}
-		/*for(int j=0;j<41;j++)
-		{
-			if(enemy[i].ex+64>barx[j] && enemy[i].ex<barx[j]+barDx[j] && enemy[i].ey+64>bary[j] && enemy[i].ey<bary[j]+barDy[j])
-			{
-				enemy[i].ex=rand()%1487;
-				enemy[i].ey=rand()%724;
-				j=-1;
-			}
-		}*/
-		if(enemy[i].state)
-		{
-			iShowBMP2(enemy[i].ex,enemy[i].ey,"enemy.bmp",0);
-		}
-	}
-}
-void movingEnemy()
-{
-	for(int i=0;i<3;i++)
-	{
-		if(enemy[i].dir==0)
-		{
-			enemy[i].ex+=xSpeed;
-		}
-		else if(enemy[i].dir==1)
-		{
-			enemy[i].ex-=xSpeed;
-		}
-		else if(enemy[i].dir==2)
-		{
-			enemy[i].ey+=ySpeed;
-		}
-		else
-		{
-			enemy[i].ey-=ySpeed;
-		}
-		/*if(enemy[i].ex+64<=screenWidth && enemy[i].ex>=1486 && enemy[i].ey>=0 && enemy[i].ey+64<=screenHeight-724)
-		{
-			enemy[i].ex;
-			enemy[i].ey;
-		}*/
-		for(int j=0;j<41;j++)
-		{
-			if(enemy[i].ex+64>barx[j] && enemy[i].ex<barx[j]+barDx[j] && enemy[i].ey+64>bary[j] && enemy[i].ey<bary[j]+barDy[j])
-			{
-				if(enemy[i].dir==0)
-				{
-					enemy[i].ex-=xSpeed;
-					enemy[i].dir=rand()%4;
-					if(enemy[i].dir==0)
-					{
-						enemy[i].dir=rand()%4;
-					}
-					else if(enemy[i].dir==1)
-					{
-						enemy[i].ex-=xSpeed;
-					}
-					else if(enemy[i].dir==2)
-					{
-						enemy[i].ey+=ySpeed;
-					}
-					else
-					{
-						enemy[i].ey-=ySpeed;
-					}
-				}
-				else if(enemy[i].dir==1)
-				{
-					enemy[i].ex+=xSpeed;
-					enemy[i].dir=rand()%4;
-					if(enemy[i].dir==0)
-					{
-						enemy[i].ex+=xSpeed;
-					}
-					else if(enemy[i].dir==1)
-					{
-						enemy[i].dir=rand()%4;
-					}
-					else if(enemy[i].dir==2)
-					{
-						enemy[i].ey+=ySpeed;
-					}
-					else
-					{
-						enemy[i].ey-=ySpeed;
-					}
-				}
-				else if(enemy[i].dir==2)
-				{
-					enemy[i].ey-=xSpeed;
-					enemy[i].dir=rand()%4;
-					if(enemy[i].dir==0)
-					{
-						enemy[i].ex+=xSpeed;
-					}
-					else if(enemy[i].dir==1)
-					{
-						enemy[i].ex-=xSpeed;
-					}
-					else if(enemy[i].dir==2)
-					{
-						enemy[i].dir=rand()%4;
-					}
-					else
-					{
-						enemy[i].ey-=ySpeed;
-					}
-				}
-				else
-				{
-					enemy[i].ey+=xSpeed;
-					enemy[i].dir=rand()%4;
-					if(enemy[i].dir==0)
-					{
-						enemy[i].ex+=xSpeed;
-					}
-					else if(enemy[i].dir==1)
-					{
-						enemy[i].ex-=xSpeed;
-					}
-					else if(enemy[i].dir==2)
-					{
-						enemy[i].ey+=ySpeed;
-					}
-					else
-					{
-						enemy[i].dir=rand()%4;
-					}
-				}
-				j=-1;
-			}
-		}
-	}
-}
+long long finalscore=0;
 void iDraw()
 {
 	//place your drawing codes here
-	iClear();
-	iShowBMPAlternative (1486,0, "destination.bmp");
-	iShowBMP2(x,y,"dex1.bmp",0);
-	keyShow();
-	enemyShow();
-	drawbars();
+	menu1();//call menu
+	if(gamestate == level1)
+	{
+		iClear();
+		//iShowImage(0,0,screenWidth,screenHeight,BackGroundImag_Load[0]);
+		//iShowBMPAlternative (0,0, "backlevel1.bmp");
+		drawbars();
+		//iShowBMPAlternative (1486,0, "destinationlast.bmp");
+		iShowBMP2(1486,0, "destinationlast.bmp",0);	
+		//iSetTimer(150,movingEnemy);
+		movingEnemy();
+		keyShow();
+		enemyShow();
+		if(!charstand)//character render
+		{
+			if(chforward ==true)
+			{
+				iShowBMP2(x,y,forkwardRun[index],0);
+			}
+			else if(backward == true)
+			{
+				iShowBMP2(x,y,backwardRun[index],0);
+			}
+			standcounter++;
+			if(standcounter>30)
+			{
+				charstand = true;
+				chforward =true;
+				backward =true;
+			}
+		}
+		else
+		{
+			iShowBMP2(x,y,"dex1.bmp",0);
+		}	
+	}
+	if(gamestate==level2)
+	{
+		iClear();
+		//iShowImage(0,0,screenWidth,screenHeight,BackGroundImag_Load[2]);
+		puzzle();
+		iShowBMP2(1486,0, "destinationlast.bmp",0);
+		//iShowBMP2(dex_x,dex_y,"image_level2//dex1.bmp",0);
+		//iSetTimer(150,movingEnemy_level2);
+		movingEnemy_level2();
+		keyShow_level2();
+		enemyShow_level2();
+		if(!char2stand)//character render
+		{
+			if(ch2forward ==true)
+			{
+				iShowBMP2(dex_x,dex_y,forkward2Run[index2],0);
+			}
+			else if(back2ward == true)
+			{
+				iShowBMP2(dex_x,dex_y,backward2Run[index2],0);
+			}
+			stand2counter++;
+			if(stand2counter>30)
+			{
+				char2stand = true;
+				ch2forward =true;
+				back2ward =true;
+			}
+		}
+		else
+		{
+			iShowBMP2(dex_x,dex_y,"dex1.bmp",0);
+		}
+	}
+	if(gamestate==level3)
+	{
+		iClear();
+		//iShowImage(0,0,screenWidth,screenHeight,BackGroundImag_Load[1]);
+		//iShowBMP2(0,0, "backlevel3.bmp",0);
+		draw3bars();
+		//iShowBMP2(x3,y3,"dex1.bmp",0);
+		//iShowBMPAlternative (1486,0, "destinationlast.bmp");
+		iShowBMP2(1486,0, "destinationlast.bmp",0);
+		//iSetTimer(1000,moving3Enemy);
+		gem3Show();
+		henemy3Show();
+		moving3Enemy();
+		if(!char3stand)//character render
+		{
+			if(ch3forward ==true)
+			{
+				iShowBMP2(x3,y3,forkward3Run[index3],0);
+			}
+			else if(back3ward == true)
+			{
+				iShowBMP2(x3,y3,backward3Run[index3],0);
+			}
+			stand3counter++;
+			if(stand3counter>30)
+			{
+				char3stand = true;
+				ch3forward =true;
+				back3ward =true;
+			}
+		}
+		else
+		{
+			iShowBMP2(x3,y3,"dex1.bmp",0);
+		}
+	}
+	if(gamestate==lost)
+	{
+		if(finalscore==0)
+		{
+			finalscore=callscorem();
+		}
+		string s =to_string(finalscore);
+		iClear();
+		iShowBMPAlternative(0,0,"lostlast.bmp");
+		iText(790,350,"YOUR SCORE",GLUT_BITMAP_TIMES_ROMAN_24);
+		iText(850,325,(char*)s.c_str(),GLUT_BITMAP_TIMES_ROMAN_24);
+	}
+	
+	timedraw();//show time and score
 }
 
 /*
@@ -333,14 +169,7 @@ void iMouseMove(int mx, int my)
 */
 void iMouse(int button, int state, int mx, int my)
 {
-	if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
-	{
-		//place your codes here
-	}
-	if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-	{
-		//place your codes here
-	}
+	menubutton(button,state, mx,my);
 }
 /*iPassiveMouseMove is called to detect and use
 the mouse point without pressing any button */
@@ -348,131 +177,50 @@ the mouse point without pressing any button */
 void iPassiveMouseMove(int mx,int my)
 {
 	//place your code here
-
- mposx = mx;
- mposy = my;
- if(mx== 2){}        /*Something to do with mx*/
- else if(my== 2){}   /*Something to do with my*/
+	 mposx = mx;
+	 mposy = my;
+	 if(mx== 2){}        /*Something to do with mx*/
+	 else if(my== 2){}   /*Something to do with my*/
 
 }
-
+ 
 /*
 	function iKeyboard() is called whenever the user hits a key in keyboard.
 	key- holds the ASCII value of the key pressed.
 */
 void iKeyboard(unsigned char key)
 {
-	if(key == 'd')
+	//gamestate operation & navigation
+	if(gamestate == hall_of_fame || gamestate == instruction || gamestate == about || gamestate == level1 || gamestate == level2 || gamestate==level3 || gamestate==lost || gamestate==menu || gamestate==finish)
 	{
-		x+=xSpeed;
-		if(x>=screenWidth-dextersWidth)
+		if(key == '\b')
 		{
-			x=screenWidth-dextersWidth;
+			gamestate = menu;
+			PlaySound("music\\menubgm.wav", NULL, SND_ASYNC);
 		}
-		else
+		else if(key == '2')
 		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					x-=xSpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					key1[i].state=0;
-					disCnt++;
-					break;
-				}
-			}
+			gamestate=level2;
+			PlaySound("music\\menuoption.wav", NULL, SND_ASYNC);
+		}
+		else if(key == '3')
+		{
+			gamestate=level3;
+			PlaySound("music\\menuoption.wav", NULL, SND_ASYNC);
 		}
 	}
-	else if(key == 'a')
+	
+	if(gamestate == level2)
 	{
-		x-=xSpeed;
-		if(x<=0)
-		{
-			x=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					x+=xSpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					key1[i].state=0;
-					disCnt++;
-					break;
-				}
-			}
-		}
+		iKeyBordControl_Level2(key);
 	}
-	else if(key == 'w')
+	if(gamestate == level1)
 	{
-		y+=ySpeed ;
-		if(y>=screenHeight-dextersHeigth)
-		{
-			y=screenHeight-dextersHeigth;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					y-=ySpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					key1[i].state=0;
-					disCnt++;
-					break;
-				}
-			}
-		}
+		iKeyBordControl_Level1(key);
 	}
-	else if(key == 's')
+	if(gamestate == level3)
 	{
-		y-=ySpeed ;
-		if(y<=0)
-		{
-			y=0;
-		}
-		else
-		{
-			for(int i=0;i<41;i++)
-			{
-				if(x+dextersWidth>barx[i] && x<barx[i]+barDx[i] && y+dextersHeigth>bary[i] && y<bary[i]+barDy[i])
-				{
-					y+=ySpeed;
-					break;
-				}
-			}
-			for(int i=0;i<5;i++)
-			{
-				if(x+dextersWidth>key1[i].kx && x<key1[i].kx+32 && y+dextersHeigth>key1[i].ky && y<key1[i].ky+32)
-				{
-					key1[i].state=0;
-					disCnt++;
-					break;
-				}
-			}
-		}
+		iKeyBordControl_Level3(key);
 	}
 	//place your codes for other keys here
 }
@@ -489,22 +237,52 @@ void iKeyboard(unsigned char key)
 void iSpecialKeyboard(unsigned char key)
 {
 
-	if(key == GLUT_KEY_END)
+	/*if(key == GLUT_KEY_END)
 	{
 		exit(0);
+	}*/
+	if(gamestate == level1){//key control function call
+
+		 SpecialKeyBoardControl_Level1( key);
 	}
+	else if(gamestate == level2){
+
+		 SpecialKeyBoardControl_Level2( key);
+	}
+	else if(gamestate == level3){
+
+		 SpecialKeyBoardControl_Level3( key);
+	}
+	
 	//place your codes for other keys here
 }
+
 //
 int main()
 {
+
+	main_halloffame();//function called from header file
 	//place your own initialization codes here.
 	keyposSet();
 	enemyposSet();
-	if(gamestate==1)
+	keypostionset();//key postion function for level2
+	//iSetTimer(150,movingEnemy_level2);
+	enemyposSet_LEVEL2();
+	keypos3Set();
+	enemypos3Set();
+	//printf("%d\n",gamestate);
+	if(gamestate==level1)
 	{
-		iSetTimer(150,movingEnemy);
+		//printf("MHN\n");
+		//iSetTimer(150,movingEnemy);
 	}
 	iInitialize(screenWidth, screenHeight, "Dexters' Laboratory");
+	//PlaySound("music", NULL, SND_LOOP | SND_ASYNC);
+	PlaySound("music\\gameopen.wav", NULL, SND_ASYNC);
+	BackGroundImag_Load[0] = iLoadImage(BackGroundImage[0]);//jpg image load
+	BackGroundImag_Load[1] = iLoadImage(BackGroundImage[1]);
+	BackGroundImag_Load[2] = iLoadImage(BackGroundImage[2]);
+
+	iStart();
 	return 0;
 }

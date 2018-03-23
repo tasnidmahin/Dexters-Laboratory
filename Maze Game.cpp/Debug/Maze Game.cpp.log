@@ -1,24 +1,19 @@
-﻿Build started 12/18/2017 8:52:20 PM.
+﻿Build started 2/6/2018 9:22:59 PM.
      1>Project "E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Maze Game.cpp\Maze Game.cpp.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\Maze Game.cpp.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Creating "Debug\dexterslaboratory.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt iMain.cpp
-         iMain.cpp
-     1>e:\mahin\1.2\new\cse 1200\maze game.cpp\maze game.cpp\bitmap_viewer.h(36): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>e:\mahin\1.2\new\cse 1200\maze game.cpp\maze game.cpp\bitmap_viewer.h(29): warning C4101: 'i' : unreferenced local variable
+         All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\Maze Game.cpp.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Maze Game.cpp.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\Maze Game.cpp.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\Maze Game.cpp.lib" /MACHINE:X86 Debug\iMain.obj
-         LINK : E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\Maze Game.cpp.exe not found or not built by the last incremental link; performing full link
-         Maze Game.cpp.vcxproj -> E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\Maze Game.cpp.exe
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\dexterslaboratory.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\dexterslaboratory.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\dexterslaboratory.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\dexterslaboratory.lib" /MACHINE:X86 Debug\iMain.obj
+         Maze Game.cpp.vcxproj -> E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\dexterslaboratory.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\Maze Game.cpp.exe;#1" /manifest "Debug\Maze Game.cpp.exe.intermediate.manifest"
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Debug\dexterslaboratory.exe;#1" /manifest Debug\dexterslaboratory.exe.intermediate.manifest
        FinalizeBuildStatus:
-         Deleting file "Debug\Maze Game.cpp.unsuccessfulbuild".
-         Touching "Debug\Maze Game.cpp.lastbuildstate".
+         Deleting file "Debug\dexterslaboratory.unsuccessfulbuild".
+         Touching "Debug\dexterslaboratory.lastbuildstate".
      1>Done Building Project "E:\Mahin\1.2\New\CSE 1200\Maze Game.cpp\Maze Game.cpp\Maze Game.cpp.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.64
+Time Elapsed 00:00:01.11
